@@ -15,14 +15,18 @@ void DisplayBoard::Init()
 
 void DisplayBoard::ShowBoard()
 {
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
+	std::cout << "  A B C D E F G H I J\n";
+	int colCounter = 1;
+		for (int i = 0; i < rows; i++)
 		{
-			std::cout << board[i][j] << " ";
-		}
+			cout << colCounter << " ";
+			for (int j = 0; j < cols; j++)
+			{
+				std::cout << board[i][j] << " ";
+			}
 		std::cout << "\n";
-	}
+		colCounter += 1;
+		}
 }
 
 int DisplayBoard::NumOfShips()

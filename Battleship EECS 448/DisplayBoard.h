@@ -27,6 +27,7 @@ public:
 	@return: Integer number of ships
 */
 	int NumOfShips();
+
 private:
 	int rows = 9; /**<Number of rows for the game board>*/
 	int cols = 10; /**<Number of columns for the game board>*/
