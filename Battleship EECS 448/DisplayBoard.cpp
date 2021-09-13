@@ -16,16 +16,16 @@ void DisplayBoard::Init()
 void DisplayBoard::ShowBoard()
 {
 	std::cout << "  A B C D E F G H I J\n";
-	int colCounter = 1;
+	int rowCounter = 1;
 		for (int i = 0; i < rows; i++)
 		{
-			cout << colCounter << " ";
+			cout << rowCounter << " ";
 			for (int j = 0; j < cols; j++)
 			{
 				std::cout << board[i][j] << " ";
 			}
 		std::cout << "\n";
-		colCounter += 1;
+		rowCounter += 1;
 		}
 }
 
