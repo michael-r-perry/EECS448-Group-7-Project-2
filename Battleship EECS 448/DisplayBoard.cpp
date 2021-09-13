@@ -29,7 +29,7 @@ void DisplayBoard::ShowBoard()
 		}
 }
 
-int DisplayBoard::NumOfShips()
+void DisplayBoard::NumOfShipsPrompt()
 {
 
 	do {
@@ -45,7 +45,11 @@ int DisplayBoard::NumOfShips()
 			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discards bad character
 		}
 	} while (shipNum < 1 or shipNum > 6);
-
 	std::cout << "You chose " << shipNum << " ship(s)";
+	NumOfShips();
+}
+
+int DisplayBoard::NumOfShips()
+{
 	return(shipNum);
 }

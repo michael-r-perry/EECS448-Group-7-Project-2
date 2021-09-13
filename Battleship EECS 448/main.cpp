@@ -7,6 +7,6 @@ int main()
 	DisplayBoard exec;
 	exec.Init();
 	exec.ShowBoard();
-	exec.NumOfShips();
+	exec.NumOfShipsPrompt();
 	return(0);
 }

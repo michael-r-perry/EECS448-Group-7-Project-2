@@ -17,16 +17,24 @@ public:
 	@post: Initializes all values of the game board to "0"
 	@param: None
 	@return: None
-*/
+	*/
 	void Init();
 
 	/*
-	@pre: None
-	@post: Acquires the desired number of ships from the player
+	@pre: NumOfShipsPrompt must successfully aquire the number of ships from the player
+	@post: Stores the number of ships chosen for easy access
 	@param: None
 	@return: Integer number of ships
-*/
+	*/
 	int NumOfShips();
+
+	/*
+	@pre: None
+	@post: Gets the number of ships and passes that info to NumOfShips.
+	@param: None
+	@return: None
+	*/
+	void NumOfShipsPrompt();
 
 private:
 	int rows = 9; /**<Number of rows for the game board>*/
