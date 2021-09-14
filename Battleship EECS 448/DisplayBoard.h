@@ -37,10 +37,9 @@ public:
 	void NumOfShipsPrompt();
 
 private:
-	int rows = 9; /**<Number of rows for the game board>*/
-	int cols = 10; /**<Number of columns for the game board>*/
-	int board[9][10]; /**<The game board itself>*/
 	int shipNum; /**<The number of ships selected by the player.>*/
+	int rows = 9; /**<The number of rows.>*/
+	int columns = 10; /**<The number of columns.>*/
 };
 
 #endif

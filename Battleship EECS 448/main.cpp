@@ -1,5 +1,6 @@
 #include "DisplayBoard.h"
-#include <iostream>; 
+#include "ShipBoard.h"
+#include <iostream>
 using namespace std;
 
 int main()

@@ -41,7 +41,7 @@ void ShipBoard::SetTile(int row, int column, char marker)
 		}
 		else
 		{
-			throw runtime_error("Can't set tile outside range!")
+			throw runtime_error("Can't set tile outside range!");
 		}
 	}
 	catch (exception e)
@@ -60,7 +60,7 @@ char ShipBoard::GetTile(int row, int column)
 		}
 		else
 		{
-			throw runtime_error("Can't get tile outside range!")
+			throw runtime_error("Can't get tile outside range!");
 		}
 	}
 	catch(exception e)
@@ -68,4 +68,9 @@ char ShipBoard::GetTile(int row, int column)
 		cout << "Runtime Error: " << e.what();
 	}
 	
+}
+
+char ShipBoard::getBoardState(int row, int column)
+{
+	return(board[row][column]);
 }

@@ -1,28 +1,33 @@
 #include <iostream>
-#include <string>
 #include "DisplayBoard.h"
+#include "ShipBoard.h"
+#include "ShipBoard.cpp"
 using namespace std;
+
+
 
 void DisplayBoard::Init()
 {
+	ShipBoard Ship;
 	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++)
+		for (int j = 0; j < columns; j++)
 		{
-			board[i][j] = 0;
+			Ship.SetTile(i, j, '0');
 		}
 	}
 }
 
 void DisplayBoard::ShowBoard()
 {
+	ShipBoard Ship;
 	std::cout << "  A B C D E F G H I J\n";
 	int rowCounter = 1;
 		for (int i = 0; i < rows; i++)
 		{
 			cout << rowCounter << " ";
-			for (int j = 0; j < cols; j++)
+			for (int j = 0; j < columns; j++)
 			{
-				std::cout << board[i][j] << " ";
+				std::cout << Ship.getBoardState(i,j) << " ";
 			}
 		std::cout << "\n";
 		rowCounter += 1;
@@ -31,7 +36,6 @@ void DisplayBoard::ShowBoard()
 
 void DisplayBoard::NumOfShipsPrompt()
 {
-
 	do {
 		std::cout << "How many ships will be in play? (1-6)\n";
 		std::cin >> shipNum;
