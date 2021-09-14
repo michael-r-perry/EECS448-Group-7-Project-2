@@ -11,7 +11,7 @@ class ShipDriver
 	private:
 	ShipBoard m_P1;
 	ShipBoard m_P2;
-	
+
 	
 
 	public:
@@ -22,7 +22,7 @@ class ShipDriver
 	@post: Sets up ship locations and marks them on the respective player's shipBoard
 	@return: None
 	/*
-	void setUpBoard();
+	void setUpBoard(int p1Ships, int p2Ships);
 
 	/*
 	@pre: None
