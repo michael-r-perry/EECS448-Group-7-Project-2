@@ -4,22 +4,10 @@
 #include "ShipBoard.cpp"
 using namespace std;
 
-
-
-void DisplayBoard::Init()
-{
-	ShipBoard Ship;
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < columns; j++)
-		{
-			Ship.SetTile(i, j, '0');
-		}
-	}
-}
+ShipBoard Ship;
 
 void DisplayBoard::ShowBoard()
 {
-	ShipBoard Ship;
 	std::cout << "  A B C D E F G H I J\n";
 	int rowCounter = 1;
 		for (int i = 0; i < rows; i++)

@@ -13,14 +13,6 @@ public:
 	void ShowBoard();
 
 	/*
-	@pre: None
-	@post: Initializes all values of the game board to "0"
-	@param: None
-	@return: None
-	*/
-	void Init();
-
-	/*
 	@pre: NumOfShipsPrompt must successfully aquire the number of ships from the player
 	@post: Stores the number of ships chosen for easy access
 	@param: None
