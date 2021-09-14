@@ -46,7 +46,6 @@ void DisplayBoard::NumOfShipsPrompt()
 		}
 	} while (shipNum < 1 or shipNum > 6);
 	std::cout << "You chose " << shipNum << " ship(s)";
-	NumOfShips();
 }
 
 int DisplayBoard::NumOfShips()
