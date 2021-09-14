@@ -17,7 +17,14 @@ class ShipBoard
 		char board[rows][columns]; // Board containing ship locations
 	public:
 		/*
-		@pre: Board is valid
+		@pre: None
+		@post: Empty board is initialized
+		@return: None
+		*/
+		ShipBoard();
+
+		/*
+		@pre: None
 		@post: None
 		@param: None
 		@return: True if board satisfies win condition, false if not
