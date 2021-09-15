@@ -1,12 +1,10 @@
-#include "DisplayBoard.h"
-#include "ShipBoard.h"
+#include "ShipDriver.h"
+#include "ShipDriver.cpp"
 #include <iostream>
 using namespace std;
 
 int main()
 {
-	DisplayBoard exec;
-	exec.ShowBoard();
-	exec.NumOfShipsPrompt();
+	ShipDriver driver;
 	return(0);
 }

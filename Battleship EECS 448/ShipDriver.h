@@ -3,15 +3,16 @@
 
 #include <iostream>
 #include <stdexcept>
-#include "ShipBoard.h";
-#include "DisplayBoard.h";
+#include "ShipBoard.h"
+#include "DisplayBoard.h"
 
 class ShipDriver
 {
 	private:
 	ShipBoard m_P1;
 	ShipBoard m_P2;
-
+	int m_P1ShipNum;
+	int m_P2ShipNum;
 	
 
 	public:
@@ -20,22 +21,26 @@ class ShipDriver
 	/*
 	@pre: None
 	@post: Sets up ship locations and marks them on the respective player's shipBoard
+	@param: None
 	@return: None
-	/*
-	void setUpBoard(int p1Ships, int p2Ships);
+	*/
+	
+	void SetUpBoard();
 
 	/*
 	@pre: None
 	@post: Initializes the start of the game
+	@param: None
 	@return: None
 	*/
-	void startGame();
+	//void StartGame();
 
 	/*
 	@pre: None
 	@post: None
+	@param: None
 	@return: True if board satisfies win condition, false if not
 	*/
-	bool checkWin();
+	bool CheckWin();
 };
 #endif
