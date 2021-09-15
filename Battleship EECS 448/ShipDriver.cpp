@@ -1,9 +1,12 @@
 #include "ShipDriver.h"
 #include "DisplayBoard.h"
+#include "ShipBoard.h"
 #include <iostream>
+#include <tuple>
 using namespace std;
 
 DisplayBoard display;
+ShipBoard ship;
 
 ShipDriver::ShipDriver()
 {
@@ -49,41 +52,74 @@ void ShipDriver::PopulateBoard(int m_P1ShipNum, int m_P2ShipNum)
 {
 	std::cout << endl;
 	display.ShowBoard();
-	int counter = 0; // Counter used to ensure all ships have been placed
 	char input;
+	
 	string coordinate; 
 
 	// Player 1:
 	do
 	{
-		std::cout << "Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
+		std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 		std::cin >> input;
-		input = tolower(input);
+		input = tolower(input); // converts answer to lowercase
 		if (input == 'h')
 		{
 			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 			std::cin >> coordinate; 
-			while (ConvertCoordinate(coordinate) == -1) // user input a bad coordinate
+			while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
 			{
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
+			std::cout << "Converted Row: " << get<0>(ConvertCoordinate(coordinate)) << endl;
+			std::cout << "Converted Column: " << get<1>(ConvertCoordinate(coordinate)) << endl;
+			
+			/* CODE TO IMPLEMENT HERE: 
+			* MARK THE LOCATION ON THE BOARD. DISPLAY UPDATED BOARD TO PLAYER. INCREASE COUNTER BY 1.
+			* NEED SOME WAY OF PLACING THE PIECES VERTICAL/HORIZONTAL FOR ANY SHIP > 1X1.
+			* ALSO NEED TO CHECK THAT PLACING THE PIECE HORIZONTAL/VERTICAL WON'T GO OFF THE BOARD
+			* AND/OR OVERLAP WITH ANOTHER SHIP. 
+			*/
 		}
-
+		else if (input == 'v')
+		{
+			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+			std::cin >> coordinate;
+			while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+			{
+				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+				std::cin >> coordinate;
+			}
+			std::cout << "Converted Row: " << get<0>(ConvertCoordinate(coordinate)) << endl;
+			std::cout << "Converted Column: " << get<1>(ConvertCoordinate(coordinate)) << endl;
+		}
 	} while ((counter < m_P1ShipNum) || (input != 'h') || (input != 'v'));
 
 
 }
 
-int ShipDriver::ConvertCoordinate(string coordinate)
+std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 {
-	char col = coordinate.at(0);
-	int row = coordinate.at(1);
+	/* When taking the int of a character, it is converted to its ASCII value equivalent. 
+	* Therefore, col is subtracting 'a' from the coordinate position as this will cancel out the ASCII conversion and give us the correct column.
+	* Row is done in a similar way, but 1 must be subtracted in order to account for the fact that there is no 0 coordinate on the board (from the player's POV)
+	* Ex: Coordinate entered: B5
+	* 'b' = 98, 'a' = 97. 98 - 97 = 1 -- the correct index location for B
+	* '5' = 53, '0' = 48. 53 - 48 = 5 - 1 = 4 -- the correct index location for 5
+	*/
+	int col = tolower(coordinate.at(0)) - 'a';
+	int row = coordinate.at(1) - '0' - 1; // only grabs the second index position of the string. Eliminates possibility of player typing "A1234". Coordinate will be "A1" in this example. 
 
-	std::cout << "Column: " << col << endl;
-	std::cout << "Row: " << row << endl; 
+	if ((col < 10) && (row < 9) && (col >= 0) && (row >= 0))
+	{
+		return make_tuple(row, col);
+	}
+	else
+	{
+		std::cout << "Invalid coordinate!\n";
+		return make_tuple(-1, 0);
+	}
 
-	return(1);
 }
 
 /*

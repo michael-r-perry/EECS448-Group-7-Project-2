@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <tuple>
 #include "ShipBoard.h"
 #include "DisplayBoard.h"
 
@@ -14,6 +15,7 @@ class ShipDriver
 		int m_P1ShipNum; // Number of ships chosen by Player 1
 		int m_P2ShipNum; // Number of ships chosen by Player 2
 		int playerTurn; // Stores the current turn. Value initialized to 1 for Player One, -1 for Player Two. Multiply by -1 to change turns. 
+		int counter = 0; // Counter used to ensure all ships have been placed
 	
 
 	public:
@@ -47,7 +49,7 @@ class ShipDriver
 
 		/*
 		@pre: Get both user's desired number of ships
-		@post: Get's position for each ship and populate's board
+		@post: Get's position for each ship and populates the board
 		@param: Number of ships for both players, integer. 
 		@return: None
 		*/
@@ -57,8 +59,8 @@ class ShipDriver
 		@pre: Get coordinate from player. For example, "A1"
 		@post: Converts the alphanumeric coordinate to a row and column on the board. 
 		@param: The coordinate string
-		@return: The row and column of the ship's placement. Returns -1 on bad input
+		@return: The row and column of the ship's placement as tuple. Returns -1 on bad input in first index location of tuple. 
 		*/
-		int ConvertCoordinate(std::string coordinate);
+		std::tuple<int, int> ConvertCoordinate(std::string coordinate);
 };
 #endif
