@@ -15,7 +15,7 @@ void DisplayBoard::ShowBoard()
 			cout << rowCounter << " ";
 			for (int j = 0; j < columns; j++)
 			{
-				std::cout << Ship.getBoardState(i,j) << " ";
+				std::cout << Ship.GetTile(i,j) << " ";
 			}
 		std::cout << "\n";
 		rowCounter += 1;

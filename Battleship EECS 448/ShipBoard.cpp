@@ -8,7 +8,7 @@ ShipBoard::ShipBoard()
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			board[i][j] = 'E';
+			board[i][j] = '0';
 		}
 	}
 }
@@ -20,7 +20,7 @@ bool ShipBoard::CheckWin()
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			if (board[i][j] == 'O')
+			if (board[i][j] == 'S')
 			{
 				return(false);
 			}
@@ -68,9 +68,4 @@ char ShipBoard::GetTile(int row, int column)
 		cout << "Runtime Error: " << e.what();
 	}
 	
-}
-
-char ShipBoard::getBoardState(int row, int column)
-{
-	return(board[row][column]);
 }

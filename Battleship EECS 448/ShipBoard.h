@@ -1,8 +1,9 @@
 /*
 	This class stores a board containing ship locations as well as where ships have been hit. 
-	E = empty space
-	O = ship
-	X = hit
+	0 = empty space
+	S = ship
+	H = hit
+	M = miss
 */
 
 #pragma once
@@ -49,15 +50,6 @@ class ShipBoard
 		@return: marker at specified tile
 		*/
 		char GetTile(int row, int column);
-
-		/*
-		@pre: Row and column are in range
-		@post: None
-		@param: None
-		@return: marker at specified tile
-		Necessary for DisplayBoard to access current state of the game board
-		*/
-		char getBoardState(int row, int column);
 };
 
 #endif
