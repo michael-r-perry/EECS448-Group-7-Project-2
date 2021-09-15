@@ -52,5 +52,13 @@ class ShipDriver
 		@return: None
 		*/
 		void PopulateBoard(int m_P1ShipNum, int m_P2ShipNum);
+
+		/*
+		@pre: Get coordinate from player. For example, "A1"
+		@post: Converts the alphanumeric coordinate to a row and column on the board. 
+		@param: The coordinate string
+		@return: The row and column of the ship's placement. Returns -1 on bad input
+		*/
+		int ConvertCoordinate(std::string coordinate);
 };
 #endif

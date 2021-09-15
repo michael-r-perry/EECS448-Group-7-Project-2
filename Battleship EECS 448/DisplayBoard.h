@@ -13,7 +13,6 @@ public:
 	void ShowBoard();
 
 private:
-	int shipNum; /**<The number of ships selected by the player.>*/
 	int rows = 9; /**<The number of rows.>*/
 	int columns = 10; /**<The number of columns.>*/
 };

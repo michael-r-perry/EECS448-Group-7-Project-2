@@ -47,10 +47,43 @@ void ShipDriver::SetUpBoard()
 
 void ShipDriver::PopulateBoard(int m_P1ShipNum, int m_P2ShipNum)
 {
+	std::cout << endl;
 	display.ShowBoard();
 	int counter = 0; // Counter used to ensure all ships have been placed
+	char input;
+	string coordinate; 
+
+	// Player 1:
+	do
+	{
+		std::cout << "Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
+		std::cin >> input;
+		input = tolower(input);
+		if (input == 'h')
+		{
+			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+			std::cin >> coordinate; 
+			while (ConvertCoordinate(coordinate) == -1) // user input a bad coordinate
+			{
+				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+				std::cin >> coordinate;
+			}
+		}
+
+	} while ((counter < m_P1ShipNum) || (input != 'h') || (input != 'v'));
 
 
+}
+
+int ShipDriver::ConvertCoordinate(string coordinate)
+{
+	char col = coordinate.at(0);
+	int row = coordinate.at(1);
+
+	std::cout << "Column: " << col << endl;
+	std::cout << "Row: " << row << endl; 
+
+	return(1);
 }
 
 /*
