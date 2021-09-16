@@ -207,6 +207,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					else
 					{
 						legalPlacement = false;
+						break;
 					}
 				}
 				if (legalPlacement)
