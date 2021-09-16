@@ -38,14 +38,13 @@ void ShipDriver::SetUpBoard()
 void ShipDriver::PopulateBoard(int m_shipNum)
 {
 	std::cout << endl;
-	display.ShowBoard();
 	char input;
-	
 	string coordinate; 
 
 	// Player 1:
 	do
 	{
+		display.ShowBoard(m_P1);
 		std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 		std::cin >> input;
 		input = tolower(input); // converts answer to lowercase
@@ -58,12 +57,11 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			std::cout << "Converted Row: " << get<0>(ConvertCoordinate(coordinate)) << endl;
-			std::cout << "Converted Column: " << get<1>(ConvertCoordinate(coordinate)) << endl;
-			
+
 			counter++;
+
 			/* CODE TO IMPLEMENT HERE: 
-			* MARK THE LOCATION ON THE BOARD. DISPLAY UPDATED BOARD TO PLAYER. INCREASE COUNTER BY 1.
+			* MARK THE LOCATION ON THE BOARD. DISPLAY UPDATED BOARD TO PLAYER.
 			* NEED SOME WAY OF PLACING THE PIECES VERTICAL/HORIZONTAL FOR ANY SHIP > 1X1.
 			* ALSO NEED TO CHECK THAT PLACING THE PIECE HORIZONTAL/VERTICAL WON'T GO OFF THE BOARD
 			* AND/OR OVERLAP WITH ANOTHER SHIP. 
@@ -78,8 +76,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			std::cout << "Converted Row: " << get<0>(ConvertCoordinate(coordinate)) << endl;
-			std::cout << "Converted Column: " << get<1>(ConvertCoordinate(coordinate)) << endl;
+			counter++;
 		}
 		else
 		{
@@ -91,7 +88,13 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 			}
 		}
 	} while (counter < m_shipNum);
-	counter = 0;
+
+	counter = 0; // initializes counter back to zero for Player 2
+
+	/*
+	* Create a method in DisplayBoard that will notify the user that the screens are about to swtich to the other player.
+	* The function will then clear the terminal before proceeding to Player 2's ship placement.
+	*/
 
 	// Player 2
 	do
@@ -108,16 +111,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			std::cout << "Converted Row: " << get<0>(ConvertCoordinate(coordinate)) << endl;
-			std::cout << "Converted Column: " << get<1>(ConvertCoordinate(coordinate)) << endl;
-
 			counter++;
-			/* CODE TO IMPLEMENT HERE:
-			* MARK THE LOCATION ON THE BOARD. DISPLAY UPDATED BOARD TO PLAYER. INCREASE COUNTER BY 1.
-			* NEED SOME WAY OF PLACING THE PIECES VERTICAL/HORIZONTAL FOR ANY SHIP > 1X1.
-			* ALSO NEED TO CHECK THAT PLACING THE PIECE HORIZONTAL/VERTICAL WON'T GO OFF THE BOARD
-			* AND/OR OVERLAP WITH ANOTHER SHIP.
-			*/
 		}
 		else if (input == 'v')
 		{
@@ -128,8 +122,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			std::cout << "Converted Row: " << get<0>(ConvertCoordinate(coordinate)) << endl;
-			std::cout << "Converted Column: " << get<1>(ConvertCoordinate(coordinate)) << endl;
+			counter++;
 		}
 		else
 		{

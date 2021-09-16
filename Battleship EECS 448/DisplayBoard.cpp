@@ -4,9 +4,7 @@
 #include "ShipBoard.cpp"
 using namespace std;
 
-ShipBoard Ship;
-
-void DisplayBoard::ShowBoard()
+void DisplayBoard::ShowBoard(ShipBoard& Ship)
 {
 	std::cout << "  A B C D E F G H I J\n";
 	int rowCounter = 1;
