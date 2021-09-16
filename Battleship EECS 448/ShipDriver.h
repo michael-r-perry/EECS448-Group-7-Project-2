@@ -68,6 +68,6 @@ class ShipDriver
 		@param: Coordinates (row, col)
 		@return: None
 		*/
-		void PlaceShip(int row, int col); //We can change this to a tuple I just don't know how to use them ATM
+		void PlaceShip(int row, int col, int counter); //We can change this to a tuple I just don't know how to use them ATM
 };
 #endif

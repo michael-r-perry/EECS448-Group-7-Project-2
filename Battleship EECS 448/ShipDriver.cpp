@@ -58,6 +58,8 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cin >> coordinate;
 			}
 
+			m_P1.SetTile(get<0>(ConvertCoordinate(coordinate)), get<1>(ConvertCoordinate(coordinate)), 'S');
+			display.ShowBoard(m_P1);
 			counter++;
 
 			/* CODE TO IMPLEMENT HERE: 
