@@ -12,8 +12,7 @@ class ShipDriver
 	private:
 		ShipBoard m_P1;
 		ShipBoard m_P2;
-		int m_P1ShipNum; // Number of ships chosen by Player 1
-		int m_P2ShipNum; // Number of ships chosen by Player 2
+		int m_shipNum; // Number of ships chosen
 		int playerTurn; // Stores the current turn. Value initialized to 1 for Player One, -1 for Player Two. Multiply by -1 to change turns. 
 		int counter = 0; // Counter used to ensure all ships have been placed
 	
@@ -53,7 +52,7 @@ class ShipDriver
 		@param: Number of ships for both players, integer. 
 		@return: None
 		*/
-		void PopulateBoard(int m_P1ShipNum, int m_P2ShipNum);
+		void PopulateBoard(int m_shipNum);
 
 		/*
 		@pre: Get coordinate from player. For example, "A1"
