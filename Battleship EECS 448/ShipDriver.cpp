@@ -224,7 +224,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				if (legalPlacement)
 				{
-					for(int i = 0; i <= counter++)
+					for(int i = 0; i <= counter; i++)
 					{
 						m_P1.SetTile(row,col+i, 'S');
 					}
@@ -258,7 +258,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 if (legalPlacement)
                                 {
-                                        for(int i = 0; i <= counter++)
+                                        for(int i = 0; i <= counter; i++)
                                         {
                                                 m_P1.SetTile(row,col+i, 'S');
                                         }
@@ -287,7 +287,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 if (legalPlacement)
                                 {
-                                        for(int i = 0; i <= counter++)
+                                        for(int i = 0; i <= counter; i++)
                                         {
                                                 m_P1.SetTile(row,col+i, 'S');
                                         }
@@ -316,7 +316,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 if (legalPlacement)
                                 {
-                                        for(int i = 0; i <= counter++)
+                                        for(int i = 0; i <= counter; i++)
                                         {
                                                 m_P1.SetTile(row,col+i, 'S');
                                         }
