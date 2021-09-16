@@ -23,7 +23,7 @@ class ShipDriver
 	
 		/*
 		@pre: None
-		@post: Sets up ship locations and marks them on the respective player's shipBoard
+		@post: Gets the desired number of ships from the player
 		@param: None
 		@return: None
 		*/
@@ -47,9 +47,9 @@ class ShipDriver
 		bool CheckWin();
 
 		/*
-		@pre: Get both user's desired number of ships
+		@pre: Get the number of ships from SetUpBoard() method
 		@post: Get's position for each ship and populates the board
-		@param: Number of ships for both players, integer. 
+		@param: Number of ships that will be in play, an integer
 		@return: None
 		*/
 		void PopulateBoard(int m_shipNum);
