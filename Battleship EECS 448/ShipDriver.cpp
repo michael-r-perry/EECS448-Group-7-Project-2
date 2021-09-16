@@ -359,7 +359,157 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 	}
 	else if(playerTurn == -1)
 	{
+		//For a  ship of size 1 rotation does not matter
+		if (counter == 0)
+		{
+			m_P1.SetTile(row, col, 'S');
+			counter++;
+		}
 
+		if(rotation == 'h')
+		{
+			if (counter == 1)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P1.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+						break;
+					}
+				}
+				if (legalPlacement)
+				{
+					m_P1.SetTile(row, col, 'S');
+					m_P1.SetTile(row, col + 1, 'S');
+					counter++;
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+			else if (counter == 2)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P2.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+						break;
+					}
+				}
+				if (legalPlacement)
+				{
+					for(int i = 0; i <= counter; i++)
+					{
+						m_P2.SetTile(row,col+i, 'S');
+					}
+					counter++;
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+			else if (counter == 3)
+			{
+				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
+	                        for (int i = 0; i <= counter; i++)
+                                {
+                                        if (m_P2.GetTile(row, col + i) == '0') // checks all positi$
+                                        {
+                                                legalPlacement = true;
+                                        }
+                                        else
+                                        {
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+                                                break;
+                                        }
+                                }
+                                if (legalPlacement)
+                                {
+                                        for(int i = 0; i <= counter; i++)
+                                        {
+                                                m_P2.SetTile(row,col+i, 'S');
+                                        }
+					counter++;
+				}
+				else
+				{
+					PopulateBoard(m_shipNumber);
+				}
+
+			}
+			else if (counter == 4)
+			{
+				for (int i = 0; i <= counter; i++)
+                                {
+                                        if (m_P2.GetTile(row, col + i) == '0') // checks all positi$
+                                        {
+                                                legalPlacement = true;
+                                        }
+                                        else
+                                        {
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+                                                break;
+                                        }
+                                }
+                                if (legalPlacement)
+                                {
+                                        for(int i = 0; i <= counter; i++)
+                                        {
+                                                m_P2.SetTile(row,col+i, 'S');
+                                        }
+                                        counter++;
+                                }
+                                else
+                                {
+                                        PopulateBoard(m_shipNumber);
+                                }
+
+			}
+			else if (counter == 5)
+			{
+				for (int i = 0; i <= counter; i++)
+                                {
+                                        if (m_P2.GetTile(row, col + i) == '0') // checks all positi$
+                                        {
+                                                legalPlacement = true;
+                                        }
+                                        else
+                                        {
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+                                                break;
+                                        }
+                                }
+                                if (legalPlacement)
+                                {
+                                        for(int i = 0; i <= counter; i++)
+                                        {
+                                                m_P2.SetTile(row,col+i, 'S');
+                                        }
+                                        counter++;
+                                }
+                                else
+                                {
+                                        PopulateBoard(m_shipNumber);
+                                }
+			}
+		}
 	}
 }
 
