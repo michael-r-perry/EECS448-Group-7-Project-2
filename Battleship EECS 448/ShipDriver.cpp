@@ -188,6 +188,8 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					}
 					else
 					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
 						break;
 					}
 				}
@@ -212,6 +214,8 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					}
 					else
 					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
 						break;
 					}
 				}
