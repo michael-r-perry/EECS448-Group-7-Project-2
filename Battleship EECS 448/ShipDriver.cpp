@@ -122,6 +122,20 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 
 }
 
+void ShipDriver::PlaceShip(int row, int col, int counter)
+{
+	//Goal: Use mark on ShipBoard to place the correct ship on the board
+	//Use counter as size of ship in order to verify placement (i.e not going out of bounds)
+	if(playerTurn == 1)
+	{
+		
+	}
+	else if(playerTurn == 2)
+	{
+
+	}
+}
+
 /*
 void ShipDriver::StartGame()
 {

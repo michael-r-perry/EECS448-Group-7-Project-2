@@ -62,5 +62,13 @@ class ShipDriver
 		@return: The row and column of the ship's placement as tuple. Returns -1 on bad input in first index location of tuple. 
 		*/
 		std::tuple<int, int> ConvertCoordinate(std::string coordinate);
+
+		/*
+		@pre: Get Row and Col of location that needs to be marked and which player's turn it is
+		@post: Mark Loction at Row/Col
+		@param: Coordinates (row, col)
+		@return: None
+		*/
+		void PlaceShip(int row, int col); //We can change this to a tuple I just don't know how to use them ATM
 };
 #endif
