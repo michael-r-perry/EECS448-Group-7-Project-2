@@ -82,7 +82,6 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			counter++;
 		}
 		else
 		{
@@ -118,7 +117,6 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			counter++;
 		}
 		else if (input == 'v')
 		{
@@ -129,7 +127,6 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
-			counter++;
 		}
 		else
 		{
@@ -178,23 +175,8 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 		{
 			if (counter == 0)
 			{
-				if (m_P1.GetTile(row, col) == '0') // checks the board first for a legal move before assigning a ship to a coordinate
-				{
-					legalPlacement = true;
-				}
-				else
-				{
-					legalPlacement = false;
-				}
-				if (legalPlacement) // after checking all spaces the ship will occupy and it is a legal move, it is then added to the board
-				{
-					m_P1.SetTile(row, col, 'S');
-					counter++;
-				}
-				else
-				{
-					PopulateBoard(m_shipNum);
-				}
+				m_P1.SetTile(row, col, 'S');
+				counter++;
 			}
 			else if (counter == 1)
 			{
@@ -206,7 +188,6 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					}
 					else
 					{
-						legalPlacement = false;
 						break;
 					}
 				}
@@ -220,6 +201,43 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				{
 					PopulateBoard(m_shipNum);
 				}
+			}
+			else if (counter == 2)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P1.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						break;
+					}
+				}
+				if (legalPlacement)
+				{
+					m_P1.SetTile(row, col, 'S');
+					m_P1.SetTile(row, col + 1, 'S');
+					m_P1.SetTile(row, col + 2, 'S');
+					counter++;
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+			else if (counter == 3)
+			{
+				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :)
+			}
+			else if (counter == 4)
+			{
+
+			}
+			else if (counter == 5)
+			{
+
 			}
 		}
 		
