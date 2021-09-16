@@ -12,6 +12,7 @@ ShipDriver::ShipDriver()
 {
 	m_shipNum = 0;
 	playerTurn = 1;
+	counter = 0;
 	SetUpBoard();
 }
 
@@ -44,6 +45,8 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	// Player 1:
 	do
 	{
+		int adjRow; // the adjusted row value after converting the user's coordinate
+		int adjCol; // the adjusted column value after converting the user's coordinate
 		display.ShowBoard(m_P1);
 		std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 		std::cin >> input;
@@ -58,9 +61,10 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cin >> coordinate;
 			}
 
-			m_P1.SetTile(get<0>(ConvertCoordinate(coordinate)), get<1>(ConvertCoordinate(coordinate)), 'S');
-			display.ShowBoard(m_P1);
-			counter++;
+			adjRow = get<0>(ConvertCoordinate(coordinate));
+			adjCol = get<1>(ConvertCoordinate(coordinate));
+
+			PlaceShip(adjRow, adjCol, input);
 
 			/* CODE TO IMPLEMENT HERE: 
 			* MARK THE LOCATION ON THE BOARD. DISPLAY UPDATED BOARD TO PLAYER.
@@ -92,6 +96,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	} while (counter < m_shipNum);
 
 	counter = 0; // initializes counter back to zero for Player 2
+	display.ShowBoard(m_P1);
 
 	/*
 	* Create a method in DisplayBoard that will notify the user that the screens are about to swtich to the other player.
@@ -162,15 +167,63 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 
 }
 
-void ShipDriver::PlaceShip(int row, int col, int counter)
+void ShipDriver::PlaceShip(int row, int col, char rotation)
 {
 	//Goal: Use mark on ShipBoard to place the correct ship on the board
 	//Use counter as size of ship in order to verify placement (i.e not going out of bounds)
+	bool legalPlacement;
 	if(playerTurn == 1)
 	{
+		if (rotation == 'h')
+		{
+			if (counter == 0)
+			{
+				if (m_P1.GetTile(row, col) == '0') // checks the board first for a legal move before assigning a ship to a coordinate
+				{
+					legalPlacement = true;
+				}
+				else
+				{
+					legalPlacement = false;
+				}
+				if (legalPlacement) // after checking all spaces the ship will occupy and it is a legal move, it is then added to the board
+				{
+					m_P1.SetTile(row, col, 'S');
+					counter++;
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+			else if (counter == 1)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P1.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						legalPlacement = false;
+					}
+				}
+				if (legalPlacement)
+				{
+					m_P1.SetTile(row, col, 'S');
+					m_P1.SetTile(row, col + 1, 'S');
+					counter++;
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+		}
 		
 	}
-	else if(playerTurn == 2)
+	else if(playerTurn == -1)
 	{
 
 	}

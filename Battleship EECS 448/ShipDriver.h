@@ -14,7 +14,7 @@ class ShipDriver
 		ShipBoard m_P2;
 		int m_shipNum; // Number of ships chosen
 		int playerTurn; // Stores the current turn. Value initialized to 1 for Player One, -1 for Player Two. Multiply by -1 to change turns. 
-		int counter = 0; // Counter used to ensure all ships have been placed
+		int counter; // Counter used to ensure all ships have been placed
 	
 
 	public:
@@ -63,11 +63,11 @@ class ShipDriver
 		std::tuple<int, int> ConvertCoordinate(std::string coordinate);
 
 		/*
-		@pre: Get Row and Col of location that needs to be marked and which player's turn it is
+		@pre: Get row and column of ship along with its orientation
 		@post: Mark Loction at Row/Col
-		@param: Coordinates (row, col)
+		@param: Coordinates (row, col), and the orientation for the ship
 		@return: None
 		*/
-		void PlaceShip(int row, int col, int counter); //We can change this to a tuple I just don't know how to use them ATM
+		void PlaceShip(int row, int col, char rotation); //We can change this to a tuple I just don't know how to use them ATM
 };
 #endif
