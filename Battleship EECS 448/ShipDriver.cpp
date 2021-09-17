@@ -82,6 +82,11 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
+
+			adjRow = get<0>(ConvertCoordinate(coordinate));
+			adjCol = get<1>(ConvertCoordinate(coordinate));
+
+			PlaceShip(adjRow, adjCol, input);
 		}
 		else
 		{
@@ -93,7 +98,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 			}
 		}
 	} while (counter < m_shipNum);
-
+ 
 	counter = 0; // initializes counter back to zero for Player 2
 	display.ShowBoard(m_P1);
 
@@ -117,6 +122,11 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
+
+			adjRow = get<0>(ConvertCoordinate(coordinate));
+			adjCol = get<1>(ConvertCoordinate(coordinate));
+
+			PlaceShip(adjRow, adjCol, input);
 		}
 		else if (input == 'v')
 		{
@@ -127,6 +137,11 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
 			}
+
+			adjRow = get<0>(ConvertCoordinate(coordinate));
+			adjCol = get<1>(ConvertCoordinate(coordinate));
+
+			PlaceShip(adjRow, adjCol, input);
 		}
 		else
 		{
