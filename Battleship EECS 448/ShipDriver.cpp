@@ -5,9 +5,6 @@
 #include <tuple>
 using namespace std;
 
-DisplayBoard display;
-ShipBoard ship;
-
 ShipDriver::ShipDriver()
 {
 	m_shipNum = 0;
@@ -40,13 +37,13 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 {
 	std::cout << endl;
 	char input;
-	string coordinate; 
+	string coordinate;
+	int adjRow; // the adjusted row value after converting the user's coordinate
+	int adjCol; // the adjusted column value after converting the user's coordinate
 
 	// Player 1:
 	do
 	{
-		int adjRow; // the adjusted row value after converting the user's coordinate
-		int adjCol; // the adjusted column value after converting the user's coordinate
 		display.ShowBoard(m_P1);
 		std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 		std::cin >> input;
@@ -281,7 +278,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -310,7 +307,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 else
                                 {
-                                        PopulateBoard(m_shipNumber);
+                                        PopulateBoard(m_shipNum);
                                 }
 
 			}
@@ -339,7 +336,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 else
                                 {
-                                        PopulateBoard(m_shipNumber);
+                                        PopulateBoard(m_shipNum);
                                 }
 			}
 		}
@@ -430,7 +427,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -460,7 +457,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -490,7 +487,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -588,7 +585,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -617,7 +614,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 else
                                 {
-                                        PopulateBoard(m_shipNumber);
+                                        PopulateBoard(m_shipNum);
                                 }
 
 			}
@@ -646,7 +643,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                                 }
                                 else
                                 {
-                                        PopulateBoard(m_shipNumber);
+                                        PopulateBoard(m_shipNum);
                                 }
 			}
 		}
@@ -737,7 +734,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -767,7 +764,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
@@ -797,7 +794,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				else
 				{
-					PopulateBoard(m_shipNumber);
+					PopulateBoard(m_shipNum);
 				}
 
 			}
