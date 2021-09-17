@@ -44,7 +44,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	// Player 1:
 	do
 	{
-		display.ShowBoard(m_P1);
+		display.ShowShips(m_P1);
 		std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 		std::cin >> input;
 		input = tolower(input); // converts answer to lowercase
@@ -97,7 +97,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	} while (counter < m_shipNum);
  
 	counter = 0; // initializes counter back to zero for Player 2
-	display.ShowBoard(m_P1);
+	display.ShowShips(m_P1);
 
 	/*
 	* Create a method in DisplayBoard that will notify the user that the screens are about to swtich to the other player.
@@ -150,6 +150,9 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 			}
 		}
 	} while (counter < m_shipNum);
+
+	// Start the game
+	StartGame();
 }
 
 std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
@@ -802,21 +805,13 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 	}
 }
 
-/*
 void ShipDriver::StartGame()
 {
-	while(!checkWin())
+	while(!CheckWin())
 	{
-		int playerTurn = 1;
-		switch(playerTurn)
-		{
-			case 1:
-				//Player 1 turn stuff
-			case -1:
-				//Player 2 turn stuff
-		}
+		
 	}
-}*/
+}
 
 bool ShipDriver::CheckWin()
 {

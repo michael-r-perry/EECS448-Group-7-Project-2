@@ -4,18 +4,58 @@
 #include "ShipBoard.cpp"
 using namespace std;
 
-void DisplayBoard::ShowBoard(ShipBoard& Ship)
+void DisplayBoard::ShowShips(ShipBoard& ship)
 {
 	std::cout << "  A B C D E F G H I J\n";
 	int rowCounter = 1;
-		for (int i = 0; i < rows; i++)
+	char tile;
+
+	for (int i = 0; i < rows; i++)
+	{
+		cout << rowCounter << " ";
+		for (int j = 0; j < columns; j++)
 		{
-			cout << rowCounter << " ";
-			for (int j = 0; j < columns; j++)
+			tile = ship.GetTile(i, j);
+
+			if (tile == 'S')
 			{
-				std::cout << Ship.GetTile(i,j) << " ";
+				cout << tile << " ";
 			}
-		std::cout << "\n";
-		rowCounter += 1;
+			else
+			{
+				cout << '0' << " ";
+			}
 		}
+
+	std::cout << "\n";
+	rowCounter += 1;
+	}
+}
+
+void DisplayBoard::ShowHitsMisses(ShipBoard& ship)
+{
+	std::cout << "  A B C D E F G H I J\n";
+	int rowCounter = 1;
+	char tile;
+
+	for (int i = 0; i < rows; i++)
+	{
+		cout << rowCounter << " ";
+		for (int j = 0; j < columns; j++)
+		{
+			tile = ship.GetTile(i, j);
+
+			if ((tile == 'H') || (tile == 'M'))
+			{
+				cout << tile << " ";
+			}
+			else
+			{
+				cout << '0' << " ";
+			}
+		}
+
+	std::cout << "\n";
+	rowCounter += 1;
+	}
 }

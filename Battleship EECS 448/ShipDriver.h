@@ -36,7 +36,7 @@ class ShipDriver
 		@param: None
 		@return: None
 		*/
-		//void StartGame();
+		void StartGame();
 
 		/*
 		@pre: None
