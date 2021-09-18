@@ -11,7 +11,7 @@ public:
 	@param: A ShipBoard class object
 	@return: None
 	*/
-	void ShowShips(ShipBoard ship);
+	void ShowShips(ShipBoard& ship);
 
 	/*
 	@pre: None
@@ -19,7 +19,7 @@ public:
 	@param: A ShipBoard class object
 	@return: None
 	*/
-	void ShowHitsMisses(ShipBoard ship);
+	void ShowHitsMisses(ShipBoard& ship);
 
 private:
 	int rows = 9; /**<The number of rows.>*/

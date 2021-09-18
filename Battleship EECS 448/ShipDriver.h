@@ -69,5 +69,13 @@ class ShipDriver
 		@return: H if hit, M if miss
 		*/
 		char PlaceHitOrMiss(ShipBoard& board, int row, int col);
+
+		/*
+		@pre: None
+		@post: Clear's the terminal screen after a 5 second delay
+		@param: None
+		@return: None
+		*/
+		void ClearScreen();
 };
 #endif
