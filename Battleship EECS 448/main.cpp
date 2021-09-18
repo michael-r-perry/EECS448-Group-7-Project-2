@@ -1,5 +1,4 @@
 #include "ShipDriver.h"
-#include "ShipDriver.cpp"
 #include <iostream>
 using namespace std;
 

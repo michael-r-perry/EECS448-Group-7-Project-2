@@ -1,7 +1,6 @@
 #include <iostream>
 #include "DisplayBoard.h"
 #include "ShipBoard.h"
-#include "ShipBoard.cpp"
 using namespace std;
 
 void DisplayBoard::ShowShips(ShipBoard ship)
