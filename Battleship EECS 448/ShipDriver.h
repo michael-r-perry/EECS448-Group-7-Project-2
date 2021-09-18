@@ -32,19 +32,11 @@ class ShipDriver
 
 		/*
 		@pre: None
-		@post: Initializes the start of the game
+		@post: Runs the main loop of the game
 		@param: None
 		@return: None
 		*/
 		void StartGame();
-
-		/*
-		@pre: None
-		@post: None
-		@param: None
-		@return: True if board satisfies win condition, false if not
-		*/
-		bool CheckWin();
 
 		/*
 		@pre: Get the number of ships from SetUpBoard() method
@@ -64,10 +56,18 @@ class ShipDriver
 
 		/*
 		@pre: Get row and column of ship along with its orientation
-		@post: Mark Loction at Row/Col
+		@post: Mark Ship Loction at Row/Col
 		@param: Coordinates (row, col), and the orientation for the ship
 		@return: None
 		*/
 		void PlaceShip(int row, int col, char rotation); //We can change this to a tuple I just don't know how to use them ATM
+
+		/*
+		@pre: row and col must be valid
+		@post: tile is marked as a hit or miss on the specified board
+		@param: Coordinates (row, col), and the orientation for the ship
+		@return: H if hit, M if miss
+		*/
+		char PlaceHitOrMiss(ShipBoard& board, int row, int col);
 };
 #endif

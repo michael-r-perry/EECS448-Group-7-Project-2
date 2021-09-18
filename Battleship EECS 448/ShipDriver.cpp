@@ -3,6 +3,7 @@
 #include "ShipBoard.h"
 #include <iostream>
 #include <tuple>
+#include <stdlib.h>
 using namespace std;
 
 ShipDriver::ShipDriver()
@@ -805,15 +806,112 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 	}
 }
 
-void ShipDriver::StartGame()
+char ShipDriver::PlaceHitOrMiss(ShipBoard& board, int row, int col)
 {
-	while(!CheckWin())
+	if (board.GetTile(row, col) == 'S') // If tile is unhit ship
 	{
-		
+		board.SetTile(row, col, 'H'); // Set tile to hit
+		return('H');
+	}
+	else
+	{
+		board.SetTile(row, col, 'M'); // Set tile to miss
+		return('M');
 	}
 }
 
-bool ShipDriver::CheckWin()
+void ShipDriver::StartGame()
 {
-	return(false);
+	string coordinate;
+	int adjRow = 0;
+	int adjCol = 0;
+	char result;
+	bool win = false;
+
+	do
+	{
+		if (playerTurn == 1) // Show boards
+		{
+			cout << "Your board\n";
+			display.ShowShips(m_P1);
+			cout << "\nPlayer 2's board\n";
+			display.ShowHitsMisses(m_P2);
+		}
+		else
+		{
+			cout << "Your board\n";
+			display.ShowShips(m_P2);
+			cout << "\nPlayer 1's board\n";
+			display.ShowHitsMisses(m_P1);
+		}
+
+		cout << "Make a guess: ";
+		cin >> coordinate; // Player enters coordinate
+
+		adjRow = get<0>(ConvertCoordinate(coordinate)); // Convert coordinate
+		adjCol = get<1>(ConvertCoordinate(coordinate));
+
+		if (playerTurn == 1) // Place hit/miss marker on other player's board and get result
+		{
+			result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
+		}
+		else
+		{
+			result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
+		}
+
+		system("CLS"); // Clear Screen
+
+		if (playerTurn == 1) // Show boards
+		{
+			cout << "Your board\n";
+			display.ShowShips(m_P1);
+			cout << "\nPlayer 2's board\n";
+			display.ShowHitsMisses(m_P2);
+		}
+		else
+		{
+			cout << "Your board\n";
+			display.ShowShips(m_P2);
+			cout << "\nPlayer 1's board\n";
+			display.ShowHitsMisses(m_P1);
+		}
+
+		if (result == 'H') // Tell player whether they got a hit or miss
+		{
+			cout << "Hit! \n";
+		}
+		else if (result == 'M')
+		{
+			cout << "Miss! \n";
+		}
+
+		system("pause"); // Pause screen
+		system("CLS"); // Clear Screen
+
+		if (playerTurn == 1) // Check if the current player has won
+		{
+			win = m_P2.CheckWin(); // Check if P2's board has any S's left
+		}
+		else
+		{
+			win = m_P1.CheckWin(); // Check if P1's board has any S's left
+		}
+
+		if (win == false) // Switch players if no one has won
+		{
+			playerTurn = playerTurn * -1;
+		}
+	} while (win == false);
+	
+	if (playerTurn == 1) // Display win message
+	{
+		cout << "Player 1 wins! \n";
+	}
+	else
+	{
+		cout << "Player 2 wins! \n";
+	}
+
+	system("pause");
 }

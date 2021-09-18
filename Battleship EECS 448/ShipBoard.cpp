@@ -37,15 +37,7 @@ void ShipBoard::SetTile(int row, int column, char marker)
 	{
 		if ((row < rows) and (column < columns)) // Check if row and column is in bound
 		{
-			if (board[row][column] == '0')
-			{
-				board[row][column] = marker;
-			}
-			else
-			{
-				std::cout << "Invalid placement. Another ship already occupies this space.\n";
-			}
-			
+			board[row][column] = marker;
 		}
 		else
 		{

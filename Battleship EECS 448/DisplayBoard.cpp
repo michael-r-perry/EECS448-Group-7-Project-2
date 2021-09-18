@@ -4,7 +4,7 @@
 #include "ShipBoard.cpp"
 using namespace std;
 
-void DisplayBoard::ShowShips(ShipBoard& ship)
+void DisplayBoard::ShowShips(ShipBoard ship)
 {
 	std::cout << "  A B C D E F G H I J\n";
 	int rowCounter = 1;
@@ -17,7 +17,7 @@ void DisplayBoard::ShowShips(ShipBoard& ship)
 		{
 			tile = ship.GetTile(i, j);
 
-			if (tile == 'S')
+			if ((tile == 'S') || (tile == 'H'))
 			{
 				cout << tile << " ";
 			}
@@ -32,7 +32,7 @@ void DisplayBoard::ShowShips(ShipBoard& ship)
 	}
 }
 
-void DisplayBoard::ShowHitsMisses(ShipBoard& ship)
+void DisplayBoard::ShowHitsMisses(ShipBoard ship)
 {
 	std::cout << "  A B C D E F G H I J\n";
 	int rowCounter = 1;
