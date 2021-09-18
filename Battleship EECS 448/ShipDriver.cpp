@@ -102,6 +102,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	{
 		while(counter < m_shipNum)
 		{
+			system("CLS");
 			display.ShowShips(m_P2);
 			std::cout << "Player 2, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 			std::cin >> input;
@@ -152,7 +153,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 		display.ShowShips(m_P2);
 		std::cout << "Clearing the screen in 5 seconds. Switch players because the game is about to start!\n";
 		ClearScreen();
-		
+		playerTurn = 1;
 		StartGame();
 	}
 }
