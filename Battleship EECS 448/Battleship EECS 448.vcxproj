@@ -141,9 +141,13 @@
   <ItemGroup>
     <ClCompile Include="DisplayBoard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShipBoard.cpp" />
+    <ClCompile Include="ShipDriver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisplayBoard.h" />
+    <ClInclude Include="ShipBoard.h" />
+    <ClInclude Include="ShipDriver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

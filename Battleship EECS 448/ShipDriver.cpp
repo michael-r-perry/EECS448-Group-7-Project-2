@@ -848,6 +848,12 @@ void ShipDriver::StartGame()
 		cout << "Make a guess: ";
 		cin >> coordinate; // Player enters coordinate
 
+		while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+		{
+			std::cout << "Make a guess: ";
+			std::cin >> coordinate;
+		}
+
 		adjRow = get<0>(ConvertCoordinate(coordinate)); // Convert coordinate
 		adjCol = get<1>(ConvertCoordinate(coordinate));
 
@@ -914,4 +920,5 @@ void ShipDriver::StartGame()
 	}
 
 	system("pause");
+	system("cls");
 }
