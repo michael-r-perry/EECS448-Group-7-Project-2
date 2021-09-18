@@ -4,6 +4,8 @@
 #include <iostream>
 #include <tuple>
 #include <stdlib.h>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 ShipDriver::ShipDriver()
@@ -30,12 +32,13 @@ void ShipDriver::SetUpBoard()
 			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discards bad character
 		}
 	} while (m_shipNum < 1 or m_shipNum > 6);
-	
+
 	PopulateBoard(m_shipNum);
 }
 
 void ShipDriver::PopulateBoard(int m_shipNum)
 {
+	system("CLS");
 	std::cout << endl;
 	char input;
 	string coordinate;
@@ -43,117 +46,115 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	int adjCol; // the adjusted column value after converting the user's coordinate
 
 	// Player 1:
-	do
+	if (playerTurn == 1)
 	{
-		display.ShowShips(m_P1);
-		std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
-		std::cin >> input;
-		input = tolower(input); // converts answer to lowercase
-		if (input == 'h')
+		while(counter < m_shipNum && playerTurn == 1)
 		{
-			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
-			std::cin >> coordinate; 
-			while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+			system("CLS");
+			display.ShowShips(m_P1);
+			std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
+			std::cin >> input;
+			input = tolower(input); // converts answer to lowercase
+			if (input == 'h')
 			{
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
+				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				{
+					std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+					std::cin >> coordinate;
+				}
+
+				adjRow = get<0>(ConvertCoordinate(coordinate));
+				adjCol = get<1>(ConvertCoordinate(coordinate));
+
+				PlaceShip(adjRow, adjCol, input);
 			}
-
-			adjRow = get<0>(ConvertCoordinate(coordinate));
-			adjCol = get<1>(ConvertCoordinate(coordinate));
-
-			PlaceShip(adjRow, adjCol, input);
-
-			/* CODE TO IMPLEMENT HERE: 
-			* MARK THE LOCATION ON THE BOARD. DISPLAY UPDATED BOARD TO PLAYER.
-			* NEED SOME WAY OF PLACING THE PIECES VERTICAL/HORIZONTAL FOR ANY SHIP > 1X1.
-			* ALSO NEED TO CHECK THAT PLACING THE PIECE HORIZONTAL/VERTICAL WON'T GO OFF THE BOARD
-			* AND/OR OVERLAP WITH ANOTHER SHIP. 
-			*/
-		}
-		else if (input == 'v')
-		{
-			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
-			std::cin >> coordinate;
-			while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+			else if (input == 'v')
 			{
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
+				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				{
+					std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+					std::cin >> coordinate;
+				}
+
+				adjRow = get<0>(ConvertCoordinate(coordinate));
+				adjCol = get<1>(ConvertCoordinate(coordinate));
+
+				PlaceShip(adjRow, adjCol, input);
 			}
-
-			adjRow = get<0>(ConvertCoordinate(coordinate));
-			adjCol = get<1>(ConvertCoordinate(coordinate));
-
-			PlaceShip(adjRow, adjCol, input);
-		}
-		else
-		{
-			std::cout << "Invalid input. Please try again.\n";
-			if (cin.fail())
+			else
 			{
-				cin.clear();
-				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Invalid input. Please try again.\n";
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				}
 			}
 		}
-	} while (counter < m_shipNum);
- 
-	counter = 0; // initializes counter back to zero for Player 2
-	display.ShowShips(m_P1);
-
-	/*
-	* Create a method in DisplayBoard that will notify the user that the screens are about to swtich to the other player.
-	* The function will then clear the terminal before proceeding to Player 2's ship placement.
-	*/
+	}
 
 	// Player 2
-	do
+	if (playerTurn == -1)
 	{
-		std::cout << "Player 2, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
-		std::cin >> input;
-		input = tolower(input); // converts answer to lowercase
-		if (input == 'h')
+		while(counter < m_shipNum)
 		{
-			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
-			std::cin >> coordinate;
-			while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+			display.ShowShips(m_P2);
+			std::cout << "Player 2, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
+			std::cin >> input;
+			input = tolower(input); // converts answer to lowercase
+			if (input == 'h')
 			{
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
+				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				{
+					std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+					std::cin >> coordinate;
+				}
+
+				adjRow = get<0>(ConvertCoordinate(coordinate));
+				adjCol = get<1>(ConvertCoordinate(coordinate));
+
+				PlaceShip(adjRow, adjCol, input);
 			}
-
-			adjRow = get<0>(ConvertCoordinate(coordinate));
-			adjCol = get<1>(ConvertCoordinate(coordinate));
-
-			PlaceShip(adjRow, adjCol, input);
-		}
-		else if (input == 'v')
-		{
-			std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
-			std::cin >> coordinate;
-			while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+			else if (input == 'v')
 			{
 				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 				std::cin >> coordinate;
+				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				{
+					std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+					std::cin >> coordinate;
+				}
+
+				adjRow = get<0>(ConvertCoordinate(coordinate));
+				adjCol = get<1>(ConvertCoordinate(coordinate));
+
+				PlaceShip(adjRow, adjCol, input);
 			}
-
-			adjRow = get<0>(ConvertCoordinate(coordinate));
-			adjCol = get<1>(ConvertCoordinate(coordinate));
-
-			PlaceShip(adjRow, adjCol, input);
-		}
-		else
-		{
-			std::cout << "Invalid input. Please try again.\n";
-			if (cin.fail())
+			else
 			{
-				cin.clear();
-				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Invalid input. Please try again.\n";
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				}
 			}
 		}
-	} while (counter < m_shipNum);
-
-	// Start the game
-	StartGame();
+	}
+	if (playerTurn == 0)
+	{
+		display.ShowShips(m_P2);
+		std::cout << "Clearing the screen in 5 seconds. Switch players because the game is about to start!\n";
+		ClearScreen();
+		
+		StartGame();
+	}
 }
 
 std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
@@ -187,14 +188,22 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 	bool legalPlacement;
 	if(playerTurn == 1)
 	{
-
 		//For a  ship of size 1 rotation does not matter
 		if (counter == 0)
 		{
 			m_P1.SetTile(row, col, 'S');
 			counter++;
+			if (counter >= m_shipNum)
+			{
+				system("CLS");
+				playerTurn = -1;
+				counter = 0; // initializes counter back to zero for Player 2
+				display.ShowShips(m_P1);
+				std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+				ClearScreen();
+			}
+			return;
 		}
-
 		if(rotation == 'h')
 		{
 			if (counter == 1)
@@ -217,6 +226,15 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					m_P1.SetTile(row, col, 'S');
 					m_P1.SetTile(row, col + 1, 'S');
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
@@ -227,7 +245,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P1.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P1.GetTile(row, col + i) == '0')
 					{
 						legalPlacement = true;
 					}
@@ -242,14 +260,18 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				{
 					for(int i = 0; i <= counter; i++)
 					{
-						m_P1.SetTile(row,col+i, 'S');
+						m_P1.SetTile(row, col + i, 'S');
 					}
-				/*
-					m_P1.SetTile(row, col, 'S');
-					m_P1.SetTile(row, col + 1, 'S');
-					m_P1.SetTile(row, col + 2, 'S');
-				*/	
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
@@ -258,90 +280,114 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else if (counter == 3)
 			{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
-	                        for (int i = 0; i <= counter; i++)
-                                {
-                                        if (m_P1.GetTile(row, col + i) == '0') // checks all positi$
-                                        {
-                                                legalPlacement = true;
-                                        }
-                                        else
-                                        {
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P1.GetTile(row, col + i) == '0')
+					{
+						legalPlacement = true;
+					}
+                    else
+                    {
 						std::cout << "\nIllegal placement of ship\n";
 						legalPlacement = false;
-                                                break;
-                                        }
-                                }
-                                if (legalPlacement)
-                                {
-                                        for(int i = 0; i <= counter; i++)
-                                        {
-                                                m_P1.SetTile(row,col+i, 'S');
-                                        }
+                        break;
+                    }
+				}
+				if (legalPlacement)
+                {
+					for(int i = 0; i <= counter; i++)
+					{
+						m_P1.SetTile(row,col+i, 'S');
+					}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 			else if (counter == 4)
 			{
 				for (int i = 0; i <= counter; i++)
-                                {
-                                        if (m_P1.GetTile(row, col + i) == '0') // checks all positi$
-                                        {
-                                                legalPlacement = true;
-                                        }
-                                        else
-                                        {
+                {
+					if (m_P1.GetTile(row, col + i) == '0')
+					{
+						legalPlacement = true;
+					}
+                    else
+                    {
 						std::cout << "\nIllegal placement of ship\n";
 						legalPlacement = false;
-                                                break;
-                                        }
-                                }
-                                if (legalPlacement)
-                                {
-                                        for(int i = 0; i <= counter; i++)
-                                        {
-                                                m_P1.SetTile(row,col+i, 'S');
-                                        }
-                                        counter++;
-                                }
-                                else
-                                {
-                                        PopulateBoard(m_shipNum);
-                                }
-
+                        break;
+                    }
+                }
+                if (legalPlacement)
+                {
+                    for(int i = 0; i <= counter; i++)
+                    {
+                        m_P1.SetTile(row,col+i, 'S');
+                    }
+                    counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
+                }
+                else
+                {
+                    PopulateBoard(m_shipNum);
+                }
 			}
 			else if (counter == 5)
 			{
 				for (int i = 0; i <= counter; i++)
-                                {
-                                        if (m_P1.GetTile(row, col + i) == '0') // checks all positi$
-                                        {
-                                                legalPlacement = true;
-                                        }
-                                        else
-                                        {
+                {
+                    if (m_P1.GetTile(row, col + i) == '0')
+                    {
+                        legalPlacement = true;
+                    }
+                    else
+                    {
 						std::cout << "\nIllegal placement of ship\n";
 						legalPlacement = false;
-                                                break;
-                                        }
-                                }
-                                if (legalPlacement)
-                                {
-                                        for(int i = 0; i <= counter; i++)
-                                        {
-                                                m_P1.SetTile(row,col+i, 'S');
-                                        }
-                                        counter++;
-                                }
-                                else
-                                {
-                                        PopulateBoard(m_shipNum);
-                                }
+                        break;
+                    }
+                }
+                if (legalPlacement)
+                {
+                    for(int i = 0; i <= counter; i++)
+                    {
+                        m_P1.SetTile(row,col+i, 'S');
+                    }
+                    counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
+                }
+                else
+                {
+                    PopulateBoard(m_shipNum);
+                }
 			}
 		}
 		else if(rotation == 'v')
@@ -366,6 +412,15 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					m_P1.SetTile(row, col, 'S');
 					m_P1.SetTile(row-1, col, 'S');
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
@@ -393,12 +448,16 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					{
 						m_P1.SetTile(row-i,col, 'S');
 					}
-				/*
-					m_P1.SetTile(row, col, 'S');
-					m_P1.SetTile(row - 1, col, 'S');
-					m_P1.SetTile(row - 2, col, 'S');
-				*/	
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
@@ -407,7 +466,6 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else if (counter == 3)
 			{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
 	        	for (int i = 0; i <= counter; i++)
                  {
                 	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
@@ -428,16 +486,23 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                         m_P1.SetTile(row-i,col, 'S');
                 	}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 			else if (counter == 4)
-						{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
+			{
 	        	for (int i = 0; i <= counter; i++)
                  {
                 	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
@@ -449,7 +514,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 						std::cout << "\nIllegal placement of ship\n";
 						legalPlacement = false;
                         break;
-                	 }
+                	}
                 }
                 if (legalPlacement)
                 {
@@ -458,19 +523,26 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                         m_P1.SetTile(row-i,col, 'S');
                 	}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 			else if (counter == 5)
 			{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
 	        	for (int i = 0; i <= counter; i++)
-                 {
-                	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
+                {
+                	if (m_P1.GetTile(row - i, col) == '0') 
                     {
                         legalPlacement = true;
                     }
@@ -488,32 +560,43 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                         m_P1.SetTile(row-i,col, 'S');
                 	}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = -1;
+						counter = 0;
+						display.ShowShips(m_P1);
+						std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+						ClearScreen();
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 		}
-		
 	}
+	//* PLAYER 2 *//
 	else if(playerTurn == -1)
 	{
-		//For a  ship of size 1 rotation does not matter
-		if (counter == 0)
+		if (counter == 0) // For a ship of size 1, rotation does not matter
 		{
-			m_P1.SetTile(row, col, 'S');
+			m_P2.SetTile(row, col, 'S');
 			counter++;
+			if (counter == m_shipNum)
+			{
+				system("CLS");
+				playerTurn = 0; // sets playerTurn to 0 to transition to StartGame();
+			}
 		}
-
 		if(rotation == 'h')
 		{
 			if (counter == 1)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P1.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P2.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
 					{
 						legalPlacement = true;
 					}
@@ -526,9 +609,14 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				if (legalPlacement)
 				{
-					m_P1.SetTile(row, col, 'S');
-					m_P1.SetTile(row, col + 1, 'S');
+					m_P2.SetTile(row, col, 'S');
+					m_P2.SetTile(row, col + 1, 'S');
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
@@ -557,6 +645,11 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 						m_P2.SetTile(row,col+i, 'S');
 					}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
@@ -565,99 +658,9 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else if (counter == 3)
 			{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
-	                        for (int i = 0; i <= counter; i++)
-                                {
-                                        if (m_P2.GetTile(row, col + i) == '0') // checks all positi$
-                                        {
-                                                legalPlacement = true;
-                                        }
-                                        else
-                                        {
-						std::cout << "\nIllegal placement of ship\n";
-						legalPlacement = false;
-                                                break;
-                                        }
-                                }
-                                if (legalPlacement)
-                                {
-                                        for(int i = 0; i <= counter; i++)
-                                        {
-                                                m_P2.SetTile(row,col+i, 'S');
-                                        }
-					counter++;
-				}
-				else
-				{
-					PopulateBoard(m_shipNum);
-				}
-
-			}
-			else if (counter == 4)
-			{
-				for (int i = 0; i <= counter; i++)
-                                {
-                                        if (m_P2.GetTile(row, col + i) == '0') // checks all positi$
-                                        {
-                                                legalPlacement = true;
-                                        }
-                                        else
-                                        {
-						std::cout << "\nIllegal placement of ship\n";
-						legalPlacement = false;
-                                                break;
-                                        }
-                                }
-                                if (legalPlacement)
-                                {
-                                        for(int i = 0; i <= counter; i++)
-                                        {
-                                                m_P2.SetTile(row,col+i, 'S');
-                                        }
-                                        counter++;
-                                }
-                                else
-                                {
-                                        PopulateBoard(m_shipNum);
-                                }
-
-			}
-			else if (counter == 5)
-			{
-				for (int i = 0; i <= counter; i++)
-                                {
-                                        if (m_P2.GetTile(row, col + i) == '0') // checks all positi$
-                                        {
-                                                legalPlacement = true;
-                                        }
-                                        else
-                                        {
-						std::cout << "\nIllegal placement of ship\n";
-						legalPlacement = false;
-                                                break;
-                                        }
-                                }
-                                if (legalPlacement)
-                                {
-                                        for(int i = 0; i <= counter; i++)
-                                        {
-                                                m_P2.SetTile(row,col+i, 'S');
-                                        }
-                                        counter++;
-                                }
-                                else
-                                {
-                                        PopulateBoard(m_shipNum);
-                                }
-			}
-		}
-		else if(rotation == 'v')
-		{
-			if (counter == 1)
-			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P1.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P2.GetTile(row, col + i) == '0')
 					{
 						legalPlacement = true;
 					}
@@ -670,9 +673,116 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				if (legalPlacement)
 				{
-					m_P1.SetTile(row, col, 'S');
-					m_P1.SetTile(row-1, col, 'S');
+					for (int i = 0; i <= counter; i++)
+					{
+						m_P2.SetTile(row, col + i, 'S');
+					}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+			else if (counter == 4)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P2.GetTile(row, col + i) == '0')
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+						break;
+					}
+				}
+				if (legalPlacement)
+				{
+					for (int i = 0; i <= counter; i++)
+					{
+						m_P2.SetTile(row, col + i, 'S');
+					}
+					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+			else if (counter == 5)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P2.GetTile(row, col + i) == '0')
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+						break;
+					}
+				}
+				if (legalPlacement)
+				{
+					for (int i = 0; i <= counter; i++)
+					{
+						m_P2.SetTile(row, col + i, 'S');
+					}
+					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
+				}
+				else
+				{
+					PopulateBoard(m_shipNum);
+				}
+			}
+		}
+		else if(rotation == 'v')
+		{
+			if (counter == 1)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (m_P2.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					{
+						legalPlacement = true;
+					}
+					else
+					{
+						std::cout << "\nIllegal placement of ship\n";
+						legalPlacement = false;
+						break;
+					}
+				}
+				if (legalPlacement)
+				{
+					m_P2.SetTile(row, col, 'S');
+					m_P2.SetTile(row-1, col, 'S');
+					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
@@ -683,7 +793,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P1.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P2.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
 					{
 						legalPlacement = true;
 					}
@@ -696,16 +806,16 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 				if (legalPlacement)
 				{
-					for(int i = 0; i <= counter; i++)
+					for (int i = 0; i <= counter; i++)
 					{
-						m_P1.SetTile(row-i,col, 'S');
+						m_P2.SetTile(row - i, col, 'S');
 					}
-				/*
-					m_P1.SetTile(row, col, 'S');
-					m_P1.SetTile(row - 1, col, 'S');
-					m_P1.SetTile(row - 2, col, 'S');
-				*/	
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
@@ -714,10 +824,9 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else if (counter == 3)
 			{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
 	        	for (int i = 0; i <= counter; i++)
-                 {
-                	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
+                {
+                	if (m_P2.GetTile(row - i, col) == '0') // checks all positi$
                     {
                         legalPlacement = true;
                     }
@@ -732,22 +841,25 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                 {
                     for(int i = 0; i <= counter; i++)
                     {
-                        m_P1.SetTile(row-i,col, 'S');
+                        m_P2.SetTile(row-i,col, 'S');
                 	}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 			else if (counter == 4)
-						{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
+			{
 	        	for (int i = 0; i <= counter; i++)
-                 {
-                	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
+                {
+                	if (m_P2.GetTile(row - i, col) == '0') // checks all positi$
                     {
                         legalPlacement = true;
                     }
@@ -756,28 +868,31 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 						std::cout << "\nIllegal placement of ship\n";
 						legalPlacement = false;
                         break;
-                	 }
+                	}
                 }
                 if (legalPlacement)
                 {
                     for(int i = 0; i <= counter; i++)
                     {
-                        m_P1.SetTile(row-i,col, 'S');
+                        m_P2.SetTile(row-i,col, 'S');
                 	}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 			else if (counter == 5)
 			{
-				// copy paste code from previous else if here. Make sure to include an extra SetTile for each increasing value of counter :
 	        	for (int i = 0; i <= counter; i++)
-                 {
-                	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
+                {
+                	if (m_P2.GetTile(row - i, col) == '0') // checks all positi$
                     {
                         legalPlacement = true;
                     }
@@ -792,15 +907,19 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                 {
                     for(int i = 0; i <= counter; i++)
                     {
-                        m_P1.SetTile(row-i,col, 'S');
+                        m_P2.SetTile(row-i,col, 'S');
                 	}
 					counter++;
+					if (counter == m_shipNum)
+					{
+						system("CLS");
+						playerTurn = 0;
+					}
 				}
 				else
 				{
 					PopulateBoard(m_shipNum);
 				}
-
 			}
 		}
 	}
@@ -914,4 +1033,10 @@ void ShipDriver::StartGame()
 	}
 
 	system("pause");
+}
+
+void ShipDriver::ClearScreen()
+{
+	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+	system("CLS");
 }
