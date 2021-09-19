@@ -11,6 +11,7 @@ Placing Ships:
 
 Playing the Game:
 	Player 1 starts first. They will see their board and where their ships are located on the top of the screen, and a stripped-down version of their opponent's board
-	that will only show Hits and Misses below. Player 1 begins by making a guess. They will be informed if the coordinate was a hit or miss and the board will be updated as such.
+	that will only show Hits and Misses below. Player 1 begins by making a guess. They will be informed if the coordinate was a hit or miss and the board will
+	be updated as such.
 	After making their guess, players will swap seats and press any key to switch to Player 2's view. 
 	Both players keep making guesses until a winner is declared, in which case the program terminates. 
