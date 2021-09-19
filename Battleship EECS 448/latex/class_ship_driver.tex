@@ -1,0 +1,85 @@
+\hypertarget{class_ship_driver}{}\doxysection{Ship\+Driver Class Reference}
+\label{class_ship_driver}\index{ShipDriver@{ShipDriver}}
+
+
+{\ttfamily \#include $<$Ship\+Driver.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ship_driver_afdd10a20ad637674c39763af17d4ad66}{Ship\+Driver}} ()
+\item 
+void \mbox{\hyperlink{class_ship_driver_ae859b10c44f5dcd417de47762742e6f3}{Set\+Up\+Board}} ()
+\item 
+void \mbox{\hyperlink{class_ship_driver_a30d413dd5c488ce3cde17454a580bcbb}{Start\+Game}} ()
+\item 
+void \mbox{\hyperlink{class_ship_driver_ace569bd6e7cf36e51b8ca30eec34186f}{Populate\+Board}} (int m\+\_\+ship\+Num)
+\item 
+std\+::tuple$<$ int, int $>$ \mbox{\hyperlink{class_ship_driver_a9e838640fe36003a014c2edaf9dc2b54}{Convert\+Coordinate}} (std\+::string coordinate)
+\item 
+void \mbox{\hyperlink{class_ship_driver_a4cfb0a8df22eeb0e6997e211f36adba9}{Place\+Ship}} (int row, int col, char rotation)
+\item 
+char \mbox{\hyperlink{class_ship_driver_a6168d7903c6a9b11c0d0109868a0e524}{Place\+Hit\+Or\+Miss}} (\mbox{\hyperlink{class_ship_board}{Ship\+Board}} \&board, int row, int col)
+\item 
+void \mbox{\hyperlink{class_ship_driver_ab87f8ae0a40817f79850fa3c56a6cbfa}{Clear\+Screen}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ship_driver_afdd10a20ad637674c39763af17d4ad66}\label{class_ship_driver_afdd10a20ad637674c39763af17d4ad66}} 
+\index{ShipDriver@{ShipDriver}!ShipDriver@{ShipDriver}}
+\index{ShipDriver@{ShipDriver}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{ShipDriver()}{ShipDriver()}}
+{\footnotesize\ttfamily Ship\+Driver\+::\+Ship\+Driver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ship_driver_ab87f8ae0a40817f79850fa3c56a6cbfa}\label{class_ship_driver_ab87f8ae0a40817f79850fa3c56a6cbfa}} 
+\index{ShipDriver@{ShipDriver}!ClearScreen@{ClearScreen}}
+\index{ClearScreen@{ClearScreen}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{ClearScreen()}{ClearScreen()}}
+{\footnotesize\ttfamily void Ship\+Driver\+::\+Clear\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ship_driver_a9e838640fe36003a014c2edaf9dc2b54}\label{class_ship_driver_a9e838640fe36003a014c2edaf9dc2b54}} 
+\index{ShipDriver@{ShipDriver}!ConvertCoordinate@{ConvertCoordinate}}
+\index{ConvertCoordinate@{ConvertCoordinate}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{ConvertCoordinate()}{ConvertCoordinate()}}
+{\footnotesize\ttfamily std\+::tuple$<$ int, int $>$ Ship\+Driver\+::\+Convert\+Coordinate (\begin{DoxyParamCaption}\item[{std\+::string}]{coordinate }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ship_driver_a6168d7903c6a9b11c0d0109868a0e524}\label{class_ship_driver_a6168d7903c6a9b11c0d0109868a0e524}} 
+\index{ShipDriver@{ShipDriver}!PlaceHitOrMiss@{PlaceHitOrMiss}}
+\index{PlaceHitOrMiss@{PlaceHitOrMiss}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{PlaceHitOrMiss()}{PlaceHitOrMiss()}}
+{\footnotesize\ttfamily char Ship\+Driver\+::\+Place\+Hit\+Or\+Miss (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ship_board}{Ship\+Board}} \&}]{board,  }\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ship_driver_a4cfb0a8df22eeb0e6997e211f36adba9}\label{class_ship_driver_a4cfb0a8df22eeb0e6997e211f36adba9}} 
+\index{ShipDriver@{ShipDriver}!PlaceShip@{PlaceShip}}
+\index{PlaceShip@{PlaceShip}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{PlaceShip()}{PlaceShip()}}
+{\footnotesize\ttfamily void Ship\+Driver\+::\+Place\+Ship (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col,  }\item[{char}]{rotation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ship_driver_ace569bd6e7cf36e51b8ca30eec34186f}\label{class_ship_driver_ace569bd6e7cf36e51b8ca30eec34186f}} 
+\index{ShipDriver@{ShipDriver}!PopulateBoard@{PopulateBoard}}
+\index{PopulateBoard@{PopulateBoard}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{PopulateBoard()}{PopulateBoard()}}
+{\footnotesize\ttfamily void Ship\+Driver\+::\+Populate\+Board (\begin{DoxyParamCaption}\item[{int}]{m\+\_\+ship\+Num }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ship_driver_ae859b10c44f5dcd417de47762742e6f3}\label{class_ship_driver_ae859b10c44f5dcd417de47762742e6f3}} 
+\index{ShipDriver@{ShipDriver}!SetUpBoard@{SetUpBoard}}
+\index{SetUpBoard@{SetUpBoard}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{SetUpBoard()}{SetUpBoard()}}
+{\footnotesize\ttfamily void Ship\+Driver\+::\+Set\+Up\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ship_driver_a30d413dd5c488ce3cde17454a580bcbb}\label{class_ship_driver_a30d413dd5c488ce3cde17454a580bcbb}} 
+\index{ShipDriver@{ShipDriver}!StartGame@{StartGame}}
+\index{StartGame@{StartGame}!ShipDriver@{ShipDriver}}
+\doxysubsubsection{\texorpdfstring{StartGame()}{StartGame()}}
+{\footnotesize\ttfamily void Ship\+Driver\+::\+Start\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Battleship EECS 448/\mbox{\hyperlink{_ship_driver_8h}{Ship\+Driver.\+h}}\item 
+Battleship EECS 448/\mbox{\hyperlink{_ship_driver_8cpp}{Ship\+Driver.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,35 @@
+\hypertarget{_display_board_8h_source}{}\doxysection{Display\+Board.\+h}
+\label{_display_board_8h_source}\index{Battleship EECS 448/DisplayBoard.h@{Battleship EECS 448/DisplayBoard.h}}
+\mbox{\hyperlink{_display_board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef DISPLAYBOARD\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define DISPLAYBOARD\_H}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_ship_board_8h}{ShipBoard.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{class_display_board}{DisplayBoard}} \{}
+\DoxyCodeLine{7 \textcolor{keyword}{public}:}
+\DoxyCodeLine{8     \textcolor{comment}{/*}}
+\DoxyCodeLine{9 \textcolor{comment}{    @pre: None}}
+\DoxyCodeLine{10 \textcolor{comment}{    @post: Displays the specified board with only ship locations to user}}
+\DoxyCodeLine{11 \textcolor{comment}{    @param: A ShipBoard class object}}
+\DoxyCodeLine{12 \textcolor{comment}{    @return: None}}
+\DoxyCodeLine{13 \textcolor{comment}{    */}}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_display_board_acafb495d731142f1e22e1480787d1410}{ShowShips}}(\mbox{\hyperlink{class_ship_board}{ShipBoard}}\& ship);}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{comment}{/*}}
+\DoxyCodeLine{17 \textcolor{comment}{    @pre: None}}
+\DoxyCodeLine{18 \textcolor{comment}{    @post: Displays the specified board with only hits/misses to user}}
+\DoxyCodeLine{19 \textcolor{comment}{    @param: A ShipBoard class object}}
+\DoxyCodeLine{20 \textcolor{comment}{    @return: None}}
+\DoxyCodeLine{21 \textcolor{comment}{    */}}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_display_board_af3a138a2d20d583d5a8b74219f7c5413}{ShowHitsMisses}}(\mbox{\hyperlink{class_ship_board}{ShipBoard}}\& ship);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{private}:}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} rows = 9; }
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} columns = 10; }
+\DoxyCodeLine{27 \};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
