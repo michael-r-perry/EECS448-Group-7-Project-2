@@ -6,9 +6,9 @@ James: 3 hours 9/12, 1 hour 9/14, 3 hours 9/15, 2 hours 9/16, 2 hours 9/18, 1 ho
 	   Total: 12 hours
 Konrad: 1.25 hours 9/13, 0.66 hours 9/14, 0.34 hours 9/16, 3.34 hours 9/17, 1 hour 9/18
 	   Total: 6.60 hours
-Paul: 1.5 hours 9/14
-	   Total:
+Paul: 1.5 hours 9/14, 0.75 hours 9/15, 0.34 hours 9/16, 0.34 hours 9/17
+	   Total: 2.93 hours
 Cole: 3 hours 9/15, 1 hour 9/16, 3 hours 9/17, 0.5 hours 9/18
 	   Total: 7.5 hours
 
-Grand Total: 26.1 person-hours
+Grand Total: 29.03 person-hours
