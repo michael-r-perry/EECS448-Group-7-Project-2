@@ -1,0 +1,87 @@
+\hypertarget{_ship_driver_8h_source}{}\doxysection{Ship\+Driver.\+h}
+\label{_ship_driver_8h_source}\index{Battleship EECS 448/ShipDriver.h@{Battleship EECS 448/ShipDriver.h}}
+\mbox{\hyperlink{_ship_driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef SHIPDRIVER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define SHIPDRIVER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <tuple>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_ship_board_8h}{ShipBoard.h}}"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_display_board_8h}{DisplayBoard.h}}"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{class_ship_driver}{ShipDriver}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{private}:}
+\DoxyCodeLine{13         \mbox{\hyperlink{class_ship_board}{ShipBoard}} m\_P1;}
+\DoxyCodeLine{14         \mbox{\hyperlink{class_ship_board}{ShipBoard}} m\_P2;}
+\DoxyCodeLine{15         \textcolor{keywordtype}{int} m\_shipNum; \textcolor{comment}{// Number of ships chosen}}
+\DoxyCodeLine{16         \textcolor{keywordtype}{int} playerTurn; \textcolor{comment}{// Stores the current turn. Value initialized to 1 for Player One, -\/1 for Player Two. Multiply by -\/1 to change turns. }}
+\DoxyCodeLine{17         \textcolor{keywordtype}{int} counter; \textcolor{comment}{// Counter used to ensure all ships have been placed}}
+\DoxyCodeLine{18         \mbox{\hyperlink{class_display_board}{DisplayBoard}} display;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22         \mbox{\hyperlink{class_ship_driver_afdd10a20ad637674c39763af17d4ad66}{ShipDriver}}();}
+\DoxyCodeLine{23     }
+\DoxyCodeLine{24         \textcolor{comment}{/*}}
+\DoxyCodeLine{25 \textcolor{comment}{        @pre: None}}
+\DoxyCodeLine{26 \textcolor{comment}{        @post: Gets the desired number of ships from the player}}
+\DoxyCodeLine{27 \textcolor{comment}{        @param: None}}
+\DoxyCodeLine{28 \textcolor{comment}{        @return: None}}
+\DoxyCodeLine{29 \textcolor{comment}{        */}}
+\DoxyCodeLine{30     }
+\DoxyCodeLine{31         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ship_driver_ae859b10c44f5dcd417de47762742e6f3}{SetUpBoard}}();}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33         \textcolor{comment}{/*}}
+\DoxyCodeLine{34 \textcolor{comment}{        @pre: None}}
+\DoxyCodeLine{35 \textcolor{comment}{        @post: Runs the main loop of the game}}
+\DoxyCodeLine{36 \textcolor{comment}{        @param: None}}
+\DoxyCodeLine{37 \textcolor{comment}{        @return: None}}
+\DoxyCodeLine{38 \textcolor{comment}{        */}}
+\DoxyCodeLine{39         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ship_driver_a30d413dd5c488ce3cde17454a580bcbb}{StartGame}}();}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \textcolor{comment}{/*}}
+\DoxyCodeLine{42 \textcolor{comment}{        @pre: Get the number of ships from SetUpBoard() method}}
+\DoxyCodeLine{43 \textcolor{comment}{        @post: Get's position for each ship and populates the board}}
+\DoxyCodeLine{44 \textcolor{comment}{        @param: Number of ships that will be in play, an integer}}
+\DoxyCodeLine{45 \textcolor{comment}{        @return: None}}
+\DoxyCodeLine{46 \textcolor{comment}{        */}}
+\DoxyCodeLine{47         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ship_driver_ace569bd6e7cf36e51b8ca30eec34186f}{PopulateBoard}}(\textcolor{keywordtype}{int} m\_shipNum);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49         \textcolor{comment}{/*}}
+\DoxyCodeLine{50 \textcolor{comment}{        @pre: Get coordinate from player. For example, "{}A1"{}}}
+\DoxyCodeLine{51 \textcolor{comment}{        @post: Converts the alphanumeric coordinate to a row and column on the board. }}
+\DoxyCodeLine{52 \textcolor{comment}{        @param: The coordinate string}}
+\DoxyCodeLine{53 \textcolor{comment}{        @return: The row and column of the ship's placement as tuple. Returns -\/1 on bad input in first index location of tuple. }}
+\DoxyCodeLine{54 \textcolor{comment}{        */}}
+\DoxyCodeLine{55         std::tuple<int, int> \mbox{\hyperlink{class_ship_driver_a9e838640fe36003a014c2edaf9dc2b54}{ConvertCoordinate}}(std::string coordinate);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57         \textcolor{comment}{/*}}
+\DoxyCodeLine{58 \textcolor{comment}{        @pre: Get row and column of ship along with its orientation}}
+\DoxyCodeLine{59 \textcolor{comment}{        @post: Mark Ship Loction at Row/Col}}
+\DoxyCodeLine{60 \textcolor{comment}{        @param: Coordinates (row, col), and the orientation for the ship}}
+\DoxyCodeLine{61 \textcolor{comment}{        @return: None}}
+\DoxyCodeLine{62 \textcolor{comment}{        */}}
+\DoxyCodeLine{63         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ship_driver_a4cfb0a8df22eeb0e6997e211f36adba9}{PlaceShip}}(\textcolor{keywordtype}{int} row, \textcolor{keywordtype}{int} col, \textcolor{keywordtype}{char} rotation); \textcolor{comment}{//We can change this to a tuple I just don't know how to use them ATM}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65         \textcolor{comment}{/*}}
+\DoxyCodeLine{66 \textcolor{comment}{        @pre: row and col must be valid}}
+\DoxyCodeLine{67 \textcolor{comment}{        @post: tile is marked as a hit or miss on the specified board}}
+\DoxyCodeLine{68 \textcolor{comment}{        @param: Coordinates (row, col), and the orientation for the ship}}
+\DoxyCodeLine{69 \textcolor{comment}{        @return: H if hit, M if miss}}
+\DoxyCodeLine{70 \textcolor{comment}{        */}}
+\DoxyCodeLine{71         \textcolor{keywordtype}{char} \mbox{\hyperlink{class_ship_driver_a6168d7903c6a9b11c0d0109868a0e524}{PlaceHitOrMiss}}(\mbox{\hyperlink{class_ship_board}{ShipBoard}}\& board, \textcolor{keywordtype}{int} row, \textcolor{keywordtype}{int} col);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73         \textcolor{comment}{/*}}
+\DoxyCodeLine{74 \textcolor{comment}{        @pre: None}}
+\DoxyCodeLine{75 \textcolor{comment}{        @post: Clear's the terminal screen after a 5 second delay}}
+\DoxyCodeLine{76 \textcolor{comment}{        @param: None}}
+\DoxyCodeLine{77 \textcolor{comment}{        @return: None}}
+\DoxyCodeLine{78 \textcolor{comment}{        */}}
+\DoxyCodeLine{79         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ship_driver_ab87f8ae0a40817f79850fa3c56a6cbfa}{ClearScreen}}();}
+\DoxyCodeLine{80 \};}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
