@@ -148,9 +148,9 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 			}
 		}
 	}
-	if (playerTurn == 0)
+	if (playerTurn == 0) // Runs once both players have placed their ships
 	{
-		display.ShowShips(m_P2);
+		display.ShowShips(m_P2); // shows player 2's final board state before starting the game
 		std::cout << "Clearing the screen in 5 seconds. Switch players because the game is about to start!\n";
 		ClearScreen();
 		playerTurn = 1;
@@ -167,8 +167,19 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 	* 'b' = 98, 'a' = 97. 98 - 97 = 1 -- the correct index location for B
 	* '5' = 53, '0' = 48. 53 - 48 = 5 - 1 = 4 -- the correct index location for 5
 	*/
-	int col = tolower(coordinate.at(0)) - 'a';
-	int row = coordinate.at(1) - '0' - 1; // only grabs the second index position of the string. Eliminates possibility of player typing "A1234"
+	int row;
+	int col;
+	try
+	{
+		col = tolower(coordinate.at(0)) - 'a';
+		row = coordinate.at(1) - '0' - 1; // only grabs the second index position of the string. Eliminates possibility of player typing "A1234"
+	}
+	catch (exception e)
+	{
+		row = -1;
+		col = -1;
+	}
+	
 
 	if ((col < 10) && (row < 9) && (col >= 0) && (row >= 0))
 	{
@@ -205,7 +216,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			return;
 		}
-		if(rotation == 'h')
+		if(rotation == 'h') // adds i to col for horizontal placement
 		{
 			if (counter == 1)
 			{
@@ -227,7 +238,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 					m_P1.SetTile(row, col, 'S');
 					m_P1.SetTile(row, col + 1, 'S');
 					counter++;
-					if (counter == m_shipNum)
+					if (counter == m_shipNum) // turns over control to player 2 after player 1 has placed all their ships
 					{
 						system("CLS");
 						playerTurn = -1;
@@ -391,13 +402,13 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
                 }
 			}
 		}
-		else if(rotation == 'v')
+		else if(rotation == 'v') // subtracts i from row for vertical placement
 		{
 			if (counter == 1)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P1.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P1.GetTile(row - i, col) == '0')
 					{
 						legalPlacement = true;
 					}
@@ -432,7 +443,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P1.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P1.GetTile(row - i, col) == '0') 
 					{
 						legalPlacement = true;
 					}
@@ -469,7 +480,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 	        	for (int i = 0; i <= counter; i++)
                  {
-                	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
+                	if (m_P1.GetTile(row - i, col) == '0')
                     {
                         legalPlacement = true;
                     }
@@ -506,7 +517,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 	        	for (int i = 0; i <= counter; i++)
                  {
-                	if (m_P1.GetTile(row - i, col) == '0') // checks all positi$
+                	if (m_P1.GetTile(row - i, col) == '0') 
                     {
                         legalPlacement = true;
                     }
@@ -591,7 +602,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				playerTurn = 0; // sets playerTurn to 0 to transition to StartGame();
 			}
 		}
-		if(rotation == 'h')
+		if(rotation == 'h') // adds i to col for horizontal placement
 		{
 			if (counter == 1)
 			{
@@ -628,7 +639,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P2.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P2.GetTile(row, col + i) == '0') 
 					{
 						legalPlacement = true;
 					}
@@ -757,13 +768,13 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				}
 			}
 		}
-		else if(rotation == 'v')
+		else if(rotation == 'v') // subtracts i from row for vertical placement
 		{
 			if (counter == 1)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P2.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P2.GetTile(row - i, col) == '0') 
 					{
 						legalPlacement = true;
 					}
@@ -794,7 +805,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
-					if (m_P2.GetTile(row - i, col) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
+					if (m_P2.GetTile(row - i, col) == '0')
 					{
 						legalPlacement = true;
 					}
@@ -827,7 +838,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 	        	for (int i = 0; i <= counter; i++)
                 {
-                	if (m_P2.GetTile(row - i, col) == '0') // checks all positi$
+                	if (m_P2.GetTile(row - i, col) == '0') 
                     {
                         legalPlacement = true;
                     }
@@ -860,7 +871,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 	        	for (int i = 0; i <= counter; i++)
                 {
-                	if (m_P2.GetTile(row - i, col) == '0') // checks all positi$
+                	if (m_P2.GetTile(row - i, col) == '0') 
                     {
                         legalPlacement = true;
                     }
@@ -893,7 +904,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 	        	for (int i = 0; i <= counter; i++)
                 {
-                	if (m_P2.GetTile(row - i, col) == '0') // checks all positi$
+                	if (m_P2.GetTile(row - i, col) == '0') 
                     {
                         legalPlacement = true;
                     }
