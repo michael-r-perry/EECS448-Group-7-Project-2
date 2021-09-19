@@ -1,6 +1,10 @@
 #include <iostream>
 #include "DisplayBoard.h"
 #include "ShipBoard.h"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 59916217c2b7a5d963c38504b7efd299ff559e91
 using namespace std;
 
 void DisplayBoard::ShowShips(ShipBoard& ship)
