@@ -176,8 +176,8 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 	}
 	catch (exception e)
 	{
-		row = -1;
-		col = -1;
+		row = -1; // sets row to -1 if user has bad input
+		col = -1; // sets col to -1 if user has bad input
 	}
 	
 
