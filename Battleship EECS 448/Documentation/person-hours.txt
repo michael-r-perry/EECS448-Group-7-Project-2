@@ -1,3 +1,5 @@
+Project 1:
+
 Given how much we all worked on this project the last week, we estimate our person-hours to be around 20-25 hours worked.
 We came to this conclusion based on the fact that we all have experience writing in C++, so it should not take more than 25 hours for us to complete a project of this size.
 
@@ -12,3 +14,9 @@ Cole: 3 hours 9/15, 1 hour 9/16, 3 hours 9/17, 0.5 hours 9/18
 	   Total: 7.5 hours
 
 Grand Total: 29.03 person-hours
+
+Project 2:
+
+Estimated Hours: 40. Our last project took about 50 hours and this project's workload seems a bit lighter.
+
+9/24:
