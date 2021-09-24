@@ -9,3 +9,5 @@ A limited-use scanner that either reveals the contents of an area or just that t
 If a player gets multiple hit in a row, they gain access to a shot that hits a whole row
 
 Powerups you can place on your board that give a benefit when the enemy player shoots them
+
+A mode where certain ships win the game outright when sunk
