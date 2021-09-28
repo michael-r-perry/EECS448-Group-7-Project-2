@@ -65,11 +65,14 @@ Implementation:
 AI Class Notes
 
 Properties:
--- m_difficulty <char> 
+-- m_difficulty <char>
+
 
 Methods:
 Public
---Shoot() return int tuple
+--SelectOrientation() return char
+--PlaceShip(char orientation) return int tuple (coords)
+--Shoot() return int tuple (coords)
         this will call either EasyShoot(), MediumShoot(), HardShoot()
 Private
 --EasyShoot()
