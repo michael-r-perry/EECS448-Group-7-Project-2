@@ -66,3 +66,12 @@ AI Class Notes
 
 Properties:
 -- m_difficulty <char> 
+
+Methods:
+Public
+--Shoot() return int tuple
+        this will call either EasyShoot(), MediumShoot(), HardShoot()
+Private
+--EasyShoot()
+--MediumShoot()
+--HardShoot()
