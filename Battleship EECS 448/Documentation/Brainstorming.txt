@@ -9,3 +9,12 @@ A limited-use scanner that either reveals the contents of an area or just that t
 If a player gets multiple hit in a row, they gain access to a shot that hits a whole row
 
 Powerups you can place on your board that give a benefit when the enemy player shoots them
+
+
+Implementation:
+----Add AI class
+----Add AI property to ShipDriver class
+----Add ifAI bool to ShipDriver class to be used
+----Choose if AI and difficulty in ShipDriver::SetUpBoard
+--------If AI chosen it will instantiate property there
+--------As well as set ifAI bool to true
