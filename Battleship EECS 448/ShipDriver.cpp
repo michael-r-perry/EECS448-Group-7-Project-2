@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <thread>
 #include <chrono>
+#include <windows.h>
+#pragma comment(lib, "winmm.lib")
 using namespace std;
 
 ShipDriver::ShipDriver()
@@ -1017,10 +1019,12 @@ void ShipDriver::StartGame()
 		if (result == 'H') // Tell player whether they got a hit or miss
 		{
 			cout << "Hit! \n";
+			PlaySound("hit-explosion.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 		else if (result == 'M')
 		{
 			cout << "Miss! \n";
+			PlaySound("miss-splash.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 
 		system("pause"); // Pause screen

@@ -10,6 +10,7 @@ If a player gets multiple hit in a row, they gain access to a shot that hits a w
 
 Powerups you can place on your board that give a benefit when the enemy player shoots them
 
+A mode where certain ships win the game outright when sunk
 
 Implementation:
 ----Add AI class
