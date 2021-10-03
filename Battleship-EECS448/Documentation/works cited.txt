@@ -1,0 +1,5 @@
+Works Cited:
+	https://stackoverflow.com/questions/5864540/infinite-loop-with-cin-when-typing-string-while-a-number-is-expected
+
+This was our only work cited for the entirety of the project as we were able to figure out everything
+else ourselves except for a std::cin bug we were experiencing early on in development.

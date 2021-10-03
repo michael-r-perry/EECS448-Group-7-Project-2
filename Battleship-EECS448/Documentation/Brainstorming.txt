@@ -1,0 +1,80 @@
+Special Shot
+
+Splash and Explosion animations/sounds
+
+The ability to move a ship as your turn during the shooting phase (probably way too impractical)
+
+A limited-use scanner that either reveals the contents of an area or just that there's a ship within it
+
+If a player gets multiple hit in a row, they gain access to a shot that hits a whole row
+
+Powerups you can place on your board that give a benefit when the enemy player shoots them
+
+A mode where certain ships win the game outright when sunk
+
+ShipDriver Implementation:
+Constructor puts default values and calls SetUpBoard();
+SetUpBoard gets the number of ships from the user and calls PopulateBoard(m_shipNum);
+PopulateBoard
+    if playerTurn == 1
+    | while counter < m_shipNum
+    |   gets the orientation from user first
+    |   gets the coordinate from the user
+    |   Calls PlaceShip(r, c, orientation);
+    if -1
+    | while counter < m_shipNum
+    |   gets the orientation from user first
+    |   gets the coordinate from the user
+    |   Calls PlaceShip(r, c, orientation);
+    if 0
+      Sets playerTurn to 1
+      Calls StartGame();
+PlaceShip
+  if playerTurn
+    First checks if counter = 1
+      set Tile
+      counter++
+      if counter == m_shipNum // see below
+    if rotation
+      if else counter (1-5)
+        Iterates through all tiles to make sure legalPlacement
+        if legalPlacement
+          Iterates through settingTiles "S"
+          counter++
+          if counter == m_shipNum
+            switch playerTurn (but if player2 then playerTurn=0)
+            counter = 0
+            5 second delay and ClearScreen();
+        else
+          PopulateBoard(m_shipNum); // invalid placement and workaround for return?
+StartGame
+  do while (win == false)
+    
+
+
+Implementation:
+----Add getBoard function to ShipBoard Class
+----Add AI class
+----Add AI property to ShipDriver class
+----Add ifAI bool to ShipDriver class to be used
+----Choose if AI and difficulty in ShipDriver::SetUpBoard
+--------If AI chosen it will instantiate property there
+--------As well as set ifAI bool to true
+
+
+AI Class Notes
+
+Properties:
+-- m_difficulty <char>
+
+
+Methods:
+Public
+--SelectOrientation() return char
+--PlaceShip(char orientation) return int tuple (coords)
+--Shoot() return int tuple (coords)
+        this will call either EasyShoot(), MediumShoot(), HardShoot()
+Private
+--EasyShoot()
+--MediumShoot()
+--HardShoot()
