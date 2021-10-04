@@ -5,6 +5,8 @@ using namespace std;
 
 int main()
 {
+	srand(time(NULL)); // Set random seed
+	
 	int choice = 0;
 
 	do

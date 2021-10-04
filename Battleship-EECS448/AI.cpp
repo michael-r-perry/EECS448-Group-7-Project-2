@@ -1,36 +1,51 @@
 #include "AI.h"
-char selectOrientation(){
-  return('h');
+#include <stdlib.h>
+
+char selectOrientation()
+{
+  int num = rand() % 2;
+  if (num == 0) 
+  {
+    return 'H';
+  }
+  else 
+  {
+    return 'V';
+  }
 }
 
 std::tuple<int, int> place Ship(char orientation)
+{
   std::tuple<int, int> coordinates;
   return(coordinates);
 }
 
-std::tuple<int, int> Shoot(){
+std::tuple<int, int> Shoot()
+{
   std::tuple<int, int> coordinates;
   return(coordinates);
 }
 
-void easyShoot(){
+void easyShoot()
+{
 
 }
 
-void mediumShoot(){
+void mediumShoot()
+{
 
 }
 
-void hardShoot(){
-
+void hardShoot()
+{
   rowMark = 1;
   colMark = 1;
   coordinates = hardShootHelper();
   (value at coordinates) = 'H';
 }
 
-std::tuple hardShootHelper(){
-
+std::tuple hardShootHelper()
+{
   std::tuple<int, int> coordinates; 
   
   if(value at coordinate == 'S'){
