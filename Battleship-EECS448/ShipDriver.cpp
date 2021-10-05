@@ -194,7 +194,7 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 	}
 
 }
-/* 
+
 void ShipDriver::PlaceShip(int row, int col, char rotation)
 {
 	//Goal: Use mark on ShipBoard to place the correct ship on the board
@@ -210,26 +210,28 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				{
 					if (rotation == 'h') // adds i to col for horizontal placement
 					{
+						if (col + i > 9) { legalPlacement = false; break; } // quick out of bounds bug fix
+
 						if (m_P1.GetTile(row, col + i) == '0')
 						{
-							legalPlacement == true;
+							legalPlacement = true;
 						}
 						else 
 						{
-							std::cout << "\nIllegal placement of ship\n";
 							legalPlacement = false;
 							break;
 						}
 					}
 					else if (rotation == 'v') // subtracts i to row for vertical placement
 					{
+						if (row - i < 0) { legalPlacement = false; break; } // quick out of bounds bug fix
+
 						if (m_P1.GetTile(row - i, col) == '0')
 						{
-							legalPlacement == true;
+							legalPlacement = true;
 						}
 						else 
 						{
-							std::cout << "\nIllegal placement of ship\n";
 							legalPlacement = false;
 							break;
 						}
@@ -263,6 +265,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else
 			{
+				std::cout << "\nIllegal placement of ship\n";
 				return;
 			}
 		}
@@ -277,26 +280,28 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				{
 					if (rotation == 'h') // adds i to col for horizontal placement
 					{
+						if (col + i > 9) { legalPlacement = false; break; } // quick out of bounds bug fix
+
 						if (m_P2.GetTile(row, col + i) == '0') 
 						{
-							legalPlacement == true;
+							legalPlacement = true;
 						}
 						else 
 						{
-							std::cout << "\nIllegal placement of ship\n";
 							legalPlacement = false;
 							break;
 						}
 					}
 					else if (rotation == 'v') // subtracts i to row for vertical placement
 					{
+						if (row - i < 0) { legalPlacement = false; break; } // quick out of bounds bug fix
+
 						if (m_P2.GetTile(row - i, col) == '0')
 						{
-							legalPlacement == true;
+							legalPlacement = true;
 						}
 						else 
 						{
-							std::cout << "\nIllegal placement of ship\n";
 							legalPlacement = false;
 							break;
 						}
@@ -326,12 +331,14 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else
 			{
+				std::cout << "\nIllegal placement of ship\n";
 				return;
 			}
 		}
 	}
 }
- */
+ 
+/*
 void ShipDriver::PlaceShip(int row, int col, char rotation)
 {
 	//Goal: Use mark on ShipBoard to place the correct ship on the board
@@ -397,6 +404,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
+					std::cout << "Row,Col: " << row << "," << (col+i) << std::endl;
 					if (m_P1.GetTile(row, col + i) == '0')
 					{
 						legalPlacement = true;
@@ -729,7 +737,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 		}
 	}
-	//* PLAYER 2 *//
+	// PLAYER 2 //
 	else if(playerTurn == -1)
 	{
 		if (counter == 0) // For a ship of size 1, rotation does not matter
@@ -1076,6 +1084,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 		}
 	}
 }
+*/
 
 char ShipDriver::PlaceHitOrMiss(ShipBoard& board, int row, int col)
 {
