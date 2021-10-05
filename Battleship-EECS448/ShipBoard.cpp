@@ -67,5 +67,4 @@ char ShipBoard::GetTile(int row, int column)
 	{
 		cout << "Runtime Error: " << e.what();
 	}
-	
 }

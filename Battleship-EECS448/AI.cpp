@@ -1,16 +1,18 @@
 #include "AI.h"
 #include <stdlib.h>
+#include <tuple>
+
 
 char selectOrientation()
 {
   int num = rand() % 2;
   if (num == 0) 
   {
-    return 'H';
+    return 'h';
   }
   else 
   {
-    return 'V';
+    return 'v';
   }
 }
 

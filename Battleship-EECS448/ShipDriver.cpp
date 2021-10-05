@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <thread>
 #include <chrono>
-#include <windows.h>
-#pragma comment(lib, "winmm.lib")
+//#include <windows.h>
+//#pragma comment(lib, "winmm.lib")
 using namespace std;
 
 ShipDriver::ShipDriver()
@@ -194,7 +194,144 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 	}
 
 }
+/* 
+void ShipDriver::PlaceShip(int row, int col, char rotation)
+{
+	//Goal: Use mark on ShipBoard to place the correct ship on the board
+	//Use counter as size of ship in order to verify placement (i.e not going out of bounds)
+	bool legalPlacement = true;
+	if (playerTurn == 1)
+	{
+		if (counter >= 0 && counter <= 5)
+		{
+			if (counter != 0) // Ships of Size 1x1 are the first ship placed and don't need to be checked for legalPlacement or have rotation
+			{
+				for (int i = 0; i <= counter; i++) // checks all positions that the ship will occupy first before assigning ship to a coordinate
+				{
+					if (rotation == 'h') // adds i to col for horizontal placement
+					{
+						if (m_P1.GetTile(row, col + i) == '0')
+						{
+							legalPlacement == true;
+						}
+						else 
+						{
+							std::cout << "\nIllegal placement of ship\n";
+							legalPlacement = false;
+							break;
+						}
+					}
+					else if (rotation == 'v') // subtracts i to row for vertical placement
+					{
+						if (m_P1.GetTile(row - i, col) == '0')
+						{
+							legalPlacement == true;
+						}
+						else 
+						{
+							std::cout << "\nIllegal placement of ship\n";
+							legalPlacement = false;
+							break;
+						}
+					}
+				}
+			}
 
+			if (legalPlacement)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (rotation == 'h')
+					{
+						m_P1.SetTile(row, col + i, 'S');
+					}
+					else 
+					{
+						m_P1.SetTile(row - i, col, 'S');
+					}
+				}
+				counter++;
+				if (counter == m_shipNum) // turns over control to player 2 after player 1 has placed all their ships
+				{
+					system("CLS");
+					playerTurn = -1;
+					counter = 0; // initializes counter back to zero for Player 2
+					display.ShowShips(m_P1);
+					std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+					ClearScreen();
+				}
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+	else if (playerTurn == -1)
+	{
+		if (counter >= 0 && counter <= 5)
+		{
+			if (counter != 0) // Ships of Size 1x1 are the first ship placed and don't need to be checked for legalPlacement or have rotation
+			{
+				for (int i = 0; i <= counter; i++) // checks all positions that the ship will occupy first before assigning ship to a coordinate
+				{
+					if (rotation == 'h') // adds i to col for horizontal placement
+					{
+						if (m_P2.GetTile(row, col + i) == '0') 
+						{
+							legalPlacement == true;
+						}
+						else 
+						{
+							std::cout << "\nIllegal placement of ship\n";
+							legalPlacement = false;
+							break;
+						}
+					}
+					else if (rotation == 'v') // subtracts i to row for vertical placement
+					{
+						if (m_P2.GetTile(row - i, col) == '0')
+						{
+							legalPlacement == true;
+						}
+						else 
+						{
+							std::cout << "\nIllegal placement of ship\n";
+							legalPlacement = false;
+							break;
+						}
+					}
+				}
+			}
+
+			if (legalPlacement)
+			{
+				for (int i = 0; i <= counter; i++)
+				{
+					if (rotation == 'h')
+					{
+						m_P2.SetTile(row, col + i, 'S');
+					}
+					else 
+					{
+						m_P2.SetTile(row - i, col, 'S');
+					}
+				}
+				counter++;
+				if (counter == m_shipNum)
+				{
+					system("CLS");
+					playerTurn = 0; // sets playerTurn to 0 to transition to StartGame();
+				}
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+}
+ */
 void ShipDriver::PlaceShip(int row, int col, char rotation)
 {
 	//Goal: Use mark on ShipBoard to place the correct ship on the board
@@ -224,6 +361,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			{
 				for (int i = 0; i <= counter; i++)
 				{
+					std::cout << "Row,Col: " << row << "," << (col+i) << std::endl;
 					if (m_P1.GetTile(row, col + i) == '0') // checks all positions that the ship will occupy first before assigning ship to a coordinate
 					{
 						legalPlacement = true;
@@ -1019,12 +1157,12 @@ void ShipDriver::StartGame()
 		if (result == 'H') // Tell player whether they got a hit or miss
 		{
 			cout << "Hit! \n";
-			PlaySound("hit-explosion.wav", NULL, SND_FILENAME | SND_ASYNC);
+			//PlaySound("hit-explosion.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 		else if (result == 'M')
 		{
 			cout << "Miss! \n";
-			PlaySound("miss-splash.wav", NULL, SND_FILENAME | SND_ASYNC);
+			//PlaySound("miss-splash.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 
 		system("pause"); // Pause screen
