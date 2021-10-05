@@ -30,3 +30,9 @@ Curtis: 30 minutes in meeting
 Davis: 30 minutes in meeting
 Michael: 30 minutes in meeting
 Musau: 30 minutes in meeting
+
+10/4:
+Michael: 2 hours finding place ship bug
+
+10/5:
+Michael: 1 hour Restructured PlaceShip and fixed bug
