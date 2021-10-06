@@ -1129,6 +1129,29 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 }
 */
 
+bool ShipDriver::isValidShot(int row, int col)
+{
+	bool isValid = false;
+	char tile;
+
+	if (playerTurn == 1)
+	{
+		tile = m_P2.GetTile(row, col);
+	}
+	else
+	{
+		tile = m_P1.GetTile(row, col);
+	}
+
+	if (tile == 'S' || tile == '0') 
+		isValid = true;
+
+	if (!isValid && !(playerTurn == -1 && m_ifAI))
+		cout << "Invalid Shot! Try an open space!\n";
+
+	return isValid;
+}
+
 char ShipDriver::PlaceHitOrMiss(ShipBoard& board, int row, int col)
 {
 	if (board.GetTile(row, col) == 'S') // If tile is unhit ship
@@ -1153,6 +1176,7 @@ void ShipDriver::StartGame()
 
 	do
 	{
+		// DISPLAY BOARDS
 		if (playerTurn == 1) // Show boards
 		{
 			cout << "Your board\n";
@@ -1168,18 +1192,32 @@ void ShipDriver::StartGame()
 			display.ShowHitsMisses(m_P1);
 		}
 
-		cout << "Make a guess: ";
-		cin >> coordinate; // Player enters coordinate
-
-		while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+		// GET VALID SHOT COORDINATES
+		do
 		{
-			std::cout << "Make a guess: ";
-			std::cin >> coordinate;
-		}
+			if (playerTurn == -1 && m_ifAI) // if its player 2 and AI is on
+			{
+				std::tuple<int, int> coord = m_AI.Shoot();
+				adjRow = get<0>(coord);
+				adjCol = get<1>(coord);
+			}
+			else
+			{
+				cout << "Make a guess: ";
+				cin >> coordinate; // Player enters coordinate
 
-		adjRow = get<0>(ConvertCoordinate(coordinate)); // Convert coordinate
-		adjCol = get<1>(ConvertCoordinate(coordinate));
+				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				{
+					std::cout << "Make a guess: ";
+					std::cin >> coordinate;
+				}
 
+				adjRow = get<0>(ConvertCoordinate(coordinate)); // Convert coordinate
+				adjCol = get<1>(ConvertCoordinate(coordinate));
+			}
+		} while (!isValidShot(adjRow, adjCol));
+
+		// PLACE SHOT
 		if (playerTurn == 1) // Place hit/miss marker on other player's board and get result
 		{
 			result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
@@ -1189,8 +1227,8 @@ void ShipDriver::StartGame()
 			result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
 		}
 
+		// DISPLAY BOARDS
 		system("CLS"); // Clear Screen
-
 		if (playerTurn == 1) // Show boards
 		{
 			cout << "Your board\n";
@@ -1206,6 +1244,7 @@ void ShipDriver::StartGame()
 			display.ShowHitsMisses(m_P1);
 		}
 
+		// SHOW USER RESULT
 		if (result == 'H') // Tell player whether they got a hit or miss
 		{
 			cout << "Hit! \n";
@@ -1217,9 +1256,9 @@ void ShipDriver::StartGame()
 			//PlaySound("miss-splash.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 
+		// CHECK WIN AND SWITCH TURNS
 		system("pause"); // Pause screen
 		system("CLS"); // Clear Screen
-
 		if (playerTurn == 1) // Check if the current player has won
 		{
 			win = m_P2.CheckWin(); // Check if P2's board has any S's left
