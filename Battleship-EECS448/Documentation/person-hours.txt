@@ -36,3 +36,4 @@ Michael: 2 hours finding place ship bug
 
 10/5:
 Michael: 1 hour Restructured PlaceShip and fixed bug
+Michael: 1 hour Formating AI class and comments for mediumShoot();
