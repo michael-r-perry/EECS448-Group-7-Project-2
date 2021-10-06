@@ -1,51 +1,73 @@
 #include "AI.h"
 #include <stdlib.h>
 #include <tuple>
+using namespace std;
 
 AI::AI()
 {
-    m_difficulty = 'E'; // Default value
-    m_randomShoot = true;
-    m_searching = false;
+  m_difficulty = 'E'; // Default value
+  m_randomShoot = true;
+  m_searching = false;
 }
 
-void setDifficulty(char difficulty)
+void AI::setDifficulty(char difficulty)
 {
-    if ((difficulty == 'E' || difficulty == 'M') || difficulty == 'H')
-    {
-        m_difficulty = difficulty;
-    }
+  if ((difficulty == 'E' || difficulty == 'M') || difficulty == 'H')
+  {
+    m_difficulty = difficulty;
+  }
 }
 
 char AI::selectOrientation()
 {
-    int num = rand() % 2;
-    if (num == 0) 
-    {
-        return 'h';
-    }
-    else 
-    {
-        return 'v';
-    }
+  int num = rand() % 2;
+  if (num == 0) 
+  {
+    return 'h';
+  }
+  else // num == 1
+  {
+    return 'v';
+  }
 }
 
-std::tuple<int, int> AI::placeShip(char orientation)
+std::tuple<int, int> AI::placeShip(char orientation, int counter)
 {
-  int row = rand() % 9;
-  int col = rand() % 10;
+  int row;
+  int col;
+  // extra logic to catch out-of-bounds placement
+  if (orientation == 'h')
+  {
+    row = rand() % 9;
+    col = rand() % (10 - counter);
+  }
+  else // orientation == 'v'
+  {
+    row = rand() % (9 - counter) + counter;
+    col = rand() % 10;
+  }
   return make_tuple(row, col);
 }
 
 std::tuple<int, int> AI::Shoot()
 {
-  std::tuple<int, int> coordinates;
-  return(coordinates);
+  if (m_difficulty == 'H')
+  {
+    return hardShoot();
+  }
+  else if (m_difficulty == 'M')
+  {
+    return mediumShoot();
+  }
+  else // m_difficulty == 'E' also default
+  {
+    return easyShoot();
+  }
 }
 
 std::tuple<int, int> AI::easyShoot()
 {
-
+  return make_tuple(0, 0); // Placeholder
 }
 
 /*
@@ -62,19 +84,24 @@ else
 */
 std::tuple<int, int> AI::mediumShoot()
 {
-
+  return make_tuple(0,0); // Placeholder
 }
 
 std::tuple<int, int> AI::hardShoot()
 {
+  return make_tuple(0,0); // Placeholder
+  /*
   rowMark = 1;
   colMark = 1;
   coordinates = hardShootHelper();
   (value at coordinates) = 'H';
+  */
 }
 
 std::tuple<int, int> AI::hardShootHelper()
 {
+  return make_tuple(0,0); // Placeholder
+  /*
   std::tuple<int, int> coordinates; 
   
   if(value at coordinate == 'S'){
@@ -95,4 +122,5 @@ std::tuple<int, int> AI::hardShootHelper()
     hardShootHelper();
   }
   //recursively work through board and return a pair for the first unhit ship found
+  */
 }

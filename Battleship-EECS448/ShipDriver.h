@@ -6,6 +6,7 @@
 #include <tuple>
 #include "ShipBoard.h"
 #include "DisplayBoard.h"
+#include "AI.h"
 
 class ShipDriver
 {
@@ -13,6 +14,8 @@ class ShipDriver
 		ShipBoard m_P1; // player 1's board
 		ShipBoard m_P2; // player 2's board
 		DisplayBoard display;
+		AI m_AI;
+		bool m_ifAI;
 		int m_shipNum; // Number of ships chosen
 		int playerTurn; // Stores the current turn. Value initialized to 1 for Player One, -1 for Player Two. Multiply by -1 to change turns. 
 		int counter; // Counter used to ensure all ships have been placed

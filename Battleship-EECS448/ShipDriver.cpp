@@ -1,6 +1,7 @@
 #include "ShipDriver.h"
 #include "DisplayBoard.h"
 #include "ShipBoard.h"
+#include "AI.h"
 #include <iostream>
 #include <tuple>
 #include <stdlib.h>
@@ -12,6 +13,7 @@ using namespace std;
 
 ShipDriver::ShipDriver()
 {
+	m_ifAI = false;
 	m_shipNum = 0;
 	playerTurn = 1;
 	counter = 0;
@@ -20,6 +22,32 @@ ShipDriver::ShipDriver()
 
 void ShipDriver::SetUpBoard()
 {
+	char gameType;
+	char difficulty;
+	do  // Get game type from user
+	{
+		cout << "1.) Play against another player\n"; // Display menu
+		cout << "2.) Play against the AI\n";
+		cout << "Enter choice: ";
+		cin >> gameType;
+	} while (gameType != '1' && gameType != '2');
+	system("CLS");
+
+	// if user chooses to play AI
+	if (gameType == '2') // Get and set AI difficulty as well as change m_ifAI to true
+	{
+		m_ifAI = true;
+		do 
+		{
+			cout << "Welcome to the AI section of SetUpBoard()!\n";
+			cout << "Choose AI difficulty (E = Easy, M = Medium, H = Hard).\n";
+			cout << "Enter choice: ";
+			cin >> difficulty;
+		} while ((difficulty != 'E' && difficulty != 'M') && difficulty != 'H');
+		m_AI.setDifficulty(difficulty);
+		system("CLS");
+	}
+
 	// Get the number of ships from the player
 	do {
 		std::cout << "Please enter the number of ships you'd like to play with (1-6): ";
@@ -102,51 +130,66 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	// Player 2
 	if (playerTurn == -1)
 	{
-		while(counter < m_shipNum)
+		if (!m_ifAI)
 		{
-			system("CLS");
-			display.ShowShips(m_P2);
-			std::cout << "Player 2, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
-			std::cin >> input;
-			input = tolower(input); // converts answer to lowercase
-			if (input == 'h')
+			while(counter < m_shipNum)
 			{
-				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
-				std::cin >> coordinate;
-				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				system("CLS");
+				display.ShowShips(m_P2);
+				std::cout << "Player 2, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
+				std::cin >> input;
+				input = tolower(input); // converts answer to lowercase
+				if (input == 'h')
 				{
 					std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 					std::cin >> coordinate;
+					while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+					{
+						std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+						std::cin >> coordinate;
+					}
+
+					adjRow = get<0>(ConvertCoordinate(coordinate));
+					adjCol = get<1>(ConvertCoordinate(coordinate));
+
+					PlaceShip(adjRow, adjCol, input);
 				}
-
-				adjRow = get<0>(ConvertCoordinate(coordinate));
-				adjCol = get<1>(ConvertCoordinate(coordinate));
-
-				PlaceShip(adjRow, adjCol, input);
-			}
-			else if (input == 'v')
-			{
-				std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
-				std::cin >> coordinate;
-				while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+				else if (input == 'v')
 				{
 					std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
 					std::cin >> coordinate;
+					while (get<0>(ConvertCoordinate(coordinate)) == -1) // user input a bad coordinate. Gets first value of tuple. 
+					{
+						std::cout << "Please enter the coordinate you would like to place the ship (ex: A1): ";
+						std::cin >> coordinate;
+					}
+
+					adjRow = get<0>(ConvertCoordinate(coordinate));
+					adjCol = get<1>(ConvertCoordinate(coordinate));
+
+					PlaceShip(adjRow, adjCol, input);
 				}
-
-				adjRow = get<0>(ConvertCoordinate(coordinate));
-				adjCol = get<1>(ConvertCoordinate(coordinate));
-
-				PlaceShip(adjRow, adjCol, input);
-			}
-			else
-			{
-				std::cout << "Invalid input. Please try again.\n";
-				if (cin.fail())
+				else
 				{
-					cin.clear();
-					cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Invalid input. Please try again.\n";
+					if (cin.fail())
+					{
+						cin.clear();
+						cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					}
 				}
+			}
+		}
+		else // Place ships with AI
+		{
+			while(counter < m_shipNum)
+			{
+				system("CLS");
+				display.ShowShips(m_P2);
+				char rotation = m_AI.selectOrientation();
+				std::tuple<int, int> coords = m_AI.placeShip(rotation, counter);
+				std::cout << "Row,Col,Orietation,Counter: " << get<0>(coords) << ", " << get<1>(coords) << ", " << rotation << ", " << counter << std::endl;
+				PlaceShip(get<0>(coords), get<1>(coords), rotation);
 			}
 		}
 	}
