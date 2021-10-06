@@ -21,7 +21,7 @@ void AI::setDifficulty(char difficulty)
 char AI::selectOrientation()
 {
   int num = rand() % 2;
-  if (num == 0) 
+  if (num == 0)
   {
     return 'h';
   }
@@ -67,7 +67,7 @@ std::tuple<int, int> AI::Shoot()
 
 std::tuple<int, int> AI::easyShoot()
 {
-  return make_tuple(0, 0); // Placeholder
+  return make_tuple(rand() % 9, rand() % 10); // Placeholder
 }
 
 /*
@@ -102,8 +102,8 @@ std::tuple<int, int> AI::hardShootHelper()
 {
   return make_tuple(0,0); // Placeholder
   /*
-  std::tuple<int, int> coordinates; 
-  
+  std::tuple<int, int> coordinates;
+
   if(value at coordinate == 'S'){
 
     return(coordinates<rowMark, colMark>);
