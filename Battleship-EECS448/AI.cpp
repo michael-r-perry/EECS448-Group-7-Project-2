@@ -2,43 +2,70 @@
 #include <stdlib.h>
 #include <tuple>
 
-
-char selectOrientation()
+AI::AI()
 {
-  int num = rand() % 2;
-  if (num == 0) 
-  {
-    return 'h';
-  }
-  else 
-  {
-    return 'v';
-  }
+    m_difficulty = 'E'; // Default value
+    m_randomShoot = true;
+    m_searching = false;
 }
 
-std::tuple<int, int> place Ship(char orientation)
+void setDifficulty(char difficulty)
+{
+    if ((difficulty == 'E' || difficulty == 'M') || difficulty == 'H')
+    {
+        m_difficulty = difficulty;
+    }
+}
+
+char AI::selectOrientation()
+{
+    int num = rand() % 2;
+    if (num == 0) 
+    {
+        return 'h';
+    }
+    else 
+    {
+        return 'v';
+    }
+}
+
+std::tuple<int, int> AI::placeShip(char orientation)
+{
+  int row = rand() % 9;
+  int col = rand() % 10;
+  return make_tuple(row, col);
+}
+
+std::tuple<int, int> AI::Shoot()
 {
   std::tuple<int, int> coordinates;
   return(coordinates);
 }
 
-std::tuple<int, int> Shoot()
-{
-  std::tuple<int, int> coordinates;
-  return(coordinates);
-}
-
-void easyShoot()
+std::tuple<int, int> AI::easyShoot()
 {
 
 }
 
-void mediumShoot()
+/*
+bool m_randomShoot
+bool m_searching
+
+if m_randomShoot
+    random shoot
+else
+    if m_searching
+        find direction of ship
+    else
+        shoot in line
+*/
+std::tuple<int, int> AI::mediumShoot()
 {
 
 }
 
-void hardShoot()
+std::tuple<int, int> AI::hardShoot()
 {
   rowMark = 1;
   colMark = 1;
@@ -46,7 +73,7 @@ void hardShoot()
   (value at coordinates) = 'H';
 }
 
-std::tuple hardShootHelper()
+std::tuple<int, int> AI::hardShootHelper()
 {
   std::tuple<int, int> coordinates; 
   
