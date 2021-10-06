@@ -21,7 +21,12 @@ class AI
         char m_difficulty;
         bool m_randomShoot;
         bool m_searching;
-        int rowMarker;
-        int colMarker;
+        bool m_firstDirection;
+        int m_direction;
+        std::tuple<int, int> m_directions[4];
+        int rowOrig;
+        int colOrig;
+        int rowMark;
+        int colMark;
 };
 #endif

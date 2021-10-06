@@ -8,6 +8,12 @@ AI::AI()
     m_difficulty = 'E'; // Default value
     m_randomShoot = true;
     m_searching = false;
+    m_firstDirection = false;
+    m_direction = 0;
+    m_directions[0] = make_tuple(-1,0); // Up
+    m_directions[1] = make_tuple(0,1);  // Right
+    m_directions[2] = make_tuple(1,0);  // Down
+    m_directions[3] = make_tuple(0,-1); // Left
 }
 
 void AI::setDifficulty(char difficulty)
