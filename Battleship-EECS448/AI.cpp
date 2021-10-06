@@ -75,11 +75,7 @@ std::tuple<int, int> AI::Shoot()
 
 std::tuple<int, int> AI::easyShoot()
 {
-<<<<<<< HEAD
-    return make_tuple(0, 0); // Placeholder
-=======
-  return make_tuple(rand() % 9, rand() % 10); // Placeholder
->>>>>>> fab9bfd9b1f2d79dd82115df9ab3389d76b1753b
+    return make_tuple(rand() % 9, rand() % 10); // Placeholder
 }
 
 /*
