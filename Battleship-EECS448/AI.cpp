@@ -102,9 +102,9 @@ std::tuple<int, int> AI::mediumShoot()
 
     if (m_randomShoot)
     {
-        int row = rand() % 9;
-        int col = rand() % 10;
-        coords = make_tuple(row, col);
+        rowMark = rand() % 9;
+        colMark = rand() % 10;
+        coords = make_tuple(rowMark, colMark);
     }
     else 
     {
@@ -117,7 +117,7 @@ std::tuple<int, int> AI::mediumShoot()
 
         }
     }
-    return coords // Placeholder
+    return coords; // Placeholder
 }
 
 std::tuple<int, int> AI::hardShoot()
@@ -162,15 +162,72 @@ void AI::HandleResult(char result)
 {
     if (m_difficulty == 'M')
     {
-        if (result == 'H')
+        // See which phase of shooting the medium AI is in
+        if (m_randomShoot)
         {
-            m_randomShoot = false;
-            m_searching = true;
+            if (result == 'H')
+            {
+                rowOrig = rowMark;
+                colOrig = colMark;
+                m_randomShoot = false;
+                m_searching = true;
+                m_direction = 0;
+            }
+            // if result == 'M' stay on random shooting
         }
-        else // result == 'M'
+        else if (m_searching)
         {
-            m_randomShoot = true;
-            m_searching = false;
+            if (result == 'M')
+            {
+                m_direction++; // Search at the next direction
+                if (m_direction >= 4) // if no hits all the way around return to random
+                {
+                    m_randomShoot = true;
+                    m_searching = false;
+                    m_direction = 0;
+                }
+            }
+            else // result == 'H'
+            {
+                m_searching = false;
+                m_firstDirection = true;
+            }
+        }
+        else if (m_firstDirection)
+        {
+            if (result == 'M')
+            {
+                m_firstDirection = false;
+                if (m_direction >= 2) // if down or left, up or right was already checked in search phase
+                {                     // Reset properties to random shooting
+                    m_randomShoot = true;
+                    m_direction = 0;
+                }
+                else // flip the direction and shoot that way
+                {
+                    flipDirection();
+                    rowMark = rowOrig;
+                    colMark = colOrig;
+                }
+            }
+            // if result == 'H' stay on shooting first direction
+        }
+        else // Second Direction
+        {
+            if (result == 'M')
+            {
+                m_randomShoot = true;
+                m_direction = 0;
+            }
+            // if result == 'H' stay on shooting second direction
         }
     }
+}
+
+void AI::flipDirection()
+{
+    if      (m_direction == 0) m_direction = 2;
+    else if (m_direction == 1) m_direction = 3;
+    else if (m_direction == 2) m_direction = 0;
+    else if (m_direction == 3) m_direction = 1; 
 }

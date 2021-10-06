@@ -18,6 +18,7 @@ class AI
         std::tuple<int, int> mediumShoot();
         std::tuple<int, int> hardShoot();
         std::tuple<int, int> hardShootHelper();
+        void flipDirection();
         char m_difficulty;
         bool m_randomShoot;
         bool m_searching;
