@@ -5,16 +5,21 @@
 
 class AI
 {
-  public:
-     char selectOrientation();
-     std::tuple<int, int> placeShip(char orientation);
-     std::tuple<int, int> Shoot();
+    public:
+        AI();
+        void setDifficulty(char difficulty);
+        char selectOrientation();
+        std::tuple<int, int> placeShip(char orientation);
+        std::tuple<int, int> Shoot();
 
-  private:
-    void easyShoot();
-    void mediumShoot();
-    void hardShoot();
-    int rowMarker;
-    int colMarker;
+    private:
+        std::tuple<int, int> easyShoot();
+        std::tuple<int, int> mediumShoot();
+        std::tuple<int, int> hardShoot();
+        char m_difficulty;
+        bool m_randomShoot;
+        bool m_searching;
+        int rowMarker;
+        int colMarker;
 };
 #endif
