@@ -11,6 +11,7 @@ class AI
         char selectOrientation();
         std::tuple<int, int> placeShip(char orientation, int counter);
         std::tuple<int, int> Shoot();
+        void HandleResult(char result);
 
     private:
         std::tuple<int, int> easyShoot();

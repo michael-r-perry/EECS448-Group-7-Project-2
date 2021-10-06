@@ -5,69 +5,77 @@ using namespace std;
 
 AI::AI()
 {
-  m_difficulty = 'E'; // Default value
-  m_randomShoot = true;
-  m_searching = false;
+    m_difficulty = 'E'; // Default value
+    m_randomShoot = true;
+    m_searching = false;
 }
 
 void AI::setDifficulty(char difficulty)
 {
-  if ((difficulty == 'E' || difficulty == 'M') || difficulty == 'H')
-  {
-    m_difficulty = difficulty;
-  }
+    if ((difficulty == 'E' || difficulty == 'M') || difficulty == 'H')
+    {
+        m_difficulty = difficulty;
+    }
+    else
+    {
+        throw("Invalid difficulty type ('E', 'M', 'H' are valid).");
+    }
 }
 
 char AI::selectOrientation()
 {
-  int num = rand() % 2;
-  if (num == 0) 
-  {
-    return 'h';
-  }
-  else // num == 1
-  {
-    return 'v';
-  }
+    int num = rand() % 2;
+    if (num == 0) 
+    {
+        return 'h';
+    }
+    else // num == 1
+    {
+        return 'v';
+    }
 }
 
 std::tuple<int, int> AI::placeShip(char orientation, int counter)
 {
-  int row;
-  int col;
-  // extra logic to catch out-of-bounds placement
-  if (orientation == 'h')
-  {
-    row = rand() % 9;
-    col = rand() % (10 - counter);
-  }
-  else // orientation == 'v'
-  {
-    row = rand() % (9 - counter) + counter;
-    col = rand() % 10;
-  }
-  return make_tuple(row, col);
+    int row;
+    int col;
+    // extra logic to catch out-of-bounds placement
+    if (orientation == 'h')
+    {
+        row = rand() % 9;
+        col = rand() % (10 - counter);
+    }
+    else // orientation == 'v'
+    {
+        row = rand() % (9 - counter) + counter;
+        col = rand() % 10;
+    }
+    return make_tuple(row, col);
 }
 
 std::tuple<int, int> AI::Shoot()
 {
-  if (m_difficulty == 'H')
-  {
-    return hardShoot();
-  }
-  else if (m_difficulty == 'M')
-  {
-    return mediumShoot();
-  }
-  else // m_difficulty == 'E' also default
-  {
-    return easyShoot();
-  }
+    if (m_difficulty == 'E')
+    {
+        return easyShoot();
+    }
+    else if (m_difficulty == 'M')
+    {
+        return mediumShoot();
+    }
+    else if (m_difficulty == 'H')
+    {
+        return hardShoot();
+    }
+    else 
+    {
+        throw("m_difficulty not valid for Shoot().");
+    }
 }
 
 std::tuple<int, int> AI::easyShoot()
 {
-  return make_tuple(0, 0); // Placeholder
+    return make_tuple(0, 0); // Placeholder
 }
 
 /*
@@ -84,43 +92,79 @@ else
 */
 std::tuple<int, int> AI::mediumShoot()
 {
-  return make_tuple(0,0); // Placeholder
+    std::tuple<int, int> coords = make_tuple(0,0);
+
+    if (m_randomShoot)
+    {
+        int row = rand() % 9;
+        int col = rand() % 10;
+        coords = make_tuple(row, col);
+    }
+    else 
+    {
+        if (m_searching) 
+        {
+            
+        }
+        else
+        {
+
+        }
+    }
+    return coords // Placeholder
 }
 
 std::tuple<int, int> AI::hardShoot()
 {
-  return make_tuple(0,0); // Placeholder
-  /*
-  rowMark = 1;
-  colMark = 1;
-  coordinates = hardShootHelper();
-  (value at coordinates) = 'H';
-  */
+    return make_tuple(0,0); // Placeholder
+    /*
+    rowMark = 1;
+    colMark = 1;
+    coordinates = hardShootHelper();
+    (value at coordinates) = 'H';
+    */
 }
 
 std::tuple<int, int> AI::hardShootHelper()
 {
-  return make_tuple(0,0); // Placeholder
-  /*
-  std::tuple<int, int> coordinates; 
-  
-  if(value at coordinate == 'S'){
+    return make_tuple(0,0); // Placeholder
+    /*
+    std::tuple<int, int> coordinates; 
+    
+    if(value at coordinate == 'S'){
 
-    return(coordinates<rowMark, colMark>);
-  }
-  else{
-
-    if(rowMark == 9){
-
-      colMark++;
-      rowMark = 1;
+        return(coordinates<rowMark, colMark>);
     }
-    else{
+    else {
 
-      rowMark++;
+        if(rowMark == 9){
+
+        colMark++;
+        rowMark = 1;
+        }
+        else{
+
+        rowMark++;
+        }
+        hardShootHelper();
     }
-    hardShootHelper();
-  }
-  //recursively work through board and return a pair for the first unhit ship found
-  */
+    //recursively work through board and return a pair for the first unhit ship found
+    */
+}
+
+void AI::HandleResult(char result) 
+{
+    if (m_difficulty == 'M')
+    {
+        if (result == 'H')
+        {
+            m_randomShoot = false;
+            m_searching = true;
+        }
+        else // result == 'M'
+        {
+            m_randomShoot = true;
+            m_searching = false;
+        }
+    }
 }
