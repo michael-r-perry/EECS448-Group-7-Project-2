@@ -127,19 +127,11 @@ std::tuple<int, int> AI::hardShoot()
 
 std::tuple<int, int> AI::hardShootHelper()
 {
-<<<<<<< HEAD
     return make_tuple(0,0); // Placeholder
     /*
     std::tuple<int, int> coordinates; 
     
     if(value at coordinate == 'S'){
-=======
-  return make_tuple(0,0); // Placeholder
-  /*
-  std::tuple<int, int> coordinates;
-
-  if(value at coordinate == 'S'){
->>>>>>> fab9bfd9b1f2d79dd82115df9ab3389d76b1753b
 
         return(coordinates<rowMark, colMark>);
     }
@@ -175,12 +167,4 @@ void AI::HandleResult(char result)
             m_searching = false;
         }
     }
-<<<<<<< HEAD
 }
-=======
-    hardShootHelper();
-  }
-  //recursively work through board and return a pair for the first unhit ship found
-  */
-}
->>>>>>> fab9bfd9b1f2d79dd82115df9ab3389d76b1753b
