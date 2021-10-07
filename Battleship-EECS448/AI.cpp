@@ -15,10 +15,6 @@ AI::AI()
     m_directions[1] = make_tuple(0,1);  // Right
     m_directions[2] = make_tuple(1,0);  // Down
     m_directions[3] = make_tuple(0,-1); // Left
-    cout << "Direction 0: " << get<0>(m_directions[m_direction]) << ", " << get<1>(m_directions[m_direction]) << endl;
-    cout << "Direction 1: " << get<0>(m_directions[1]) << ", " << get<1>(m_directions[1]) << endl;
-    cout << "Direction 2: " << get<0>(m_directions[2]) << ", " << get<1>(m_directions[2]) << endl;
-    cout << "Direction 3: " << get<0>(m_directions[3]) << ", " << get<1>(m_directions[3]) << endl;
 }
 
 void AI::setDifficulty(char difficulty)
@@ -86,21 +82,9 @@ std::tuple<int, int> AI::Shoot()
 
 std::tuple<int, int> AI::easyShoot()
 {
-    return make_tuple(rand() % 9, rand() % 10); // Placeholder
+    return make_tuple(rand() % 9, rand() % 10); // random Row(0-8) Col(0-9)
 }
 
-/*
-bool m_randomShoot
-bool m_searching
-
-if m_randomShoot
-    random shoot
-else
-    if m_searching
-        find direction of ship
-    else
-        shoot in line
-*/
 std::tuple<int, int> AI::mediumShoot()
 {
     std::tuple<int, int> coords = make_tuple(0,0);
@@ -109,20 +93,14 @@ std::tuple<int, int> AI::mediumShoot()
     {
         rowMark = rand() % 9;
         colMark = rand() % 10;
-        cout << "RANDOM SHOT (row,col): " << rowMark << "," << colMark << endl;
         coords = make_tuple(rowMark, colMark);
     }
     else if (m_searching) // Searching for Ship Direction Phase
     {
-        cout << "PRE SEARCHING SHOT (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
-        cout << "PRE SEARCHING SHOT (rowOrig,colOrig): " << rowOrig << "," << colOrig << endl;
-        cout << "Direction (get0,get1): " << get<0>(m_directions[m_direction]) << "," << get<1>(m_directions[m_direction]) << endl;
         rowMark = rowOrig + get<0>(m_directions[m_direction]);
         colMark = colOrig + get<1>(m_directions[m_direction]);
-        cout << "POST SEARCHING SHOT (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
         if (isValidCoords(rowMark, colMark))
         {
-            cout << "SEARCHING SHOT (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
             coords = make_tuple(rowMark, colMark);
         }
         else
@@ -145,7 +123,6 @@ std::tuple<int, int> AI::mediumShoot()
         {
             rowMark = row;
             colMark = col;
-            cout << "FIRST DIRECTION SHOT (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
             coords = make_tuple(rowMark, colMark);
         }
         else
@@ -173,7 +150,6 @@ std::tuple<int, int> AI::mediumShoot()
         {
             rowMark = row;
             colMark = col;
-            cout << "SECOND DIRECTION SHOT (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
             coords = make_tuple(rowMark, colMark);
         }
         else
@@ -231,7 +207,6 @@ void AI::HandleResult(char result)
         // See which phase of shooting the medium AI is in
         if (m_randomShoot)
         {
-            cout << "RANDOM Handle (row,col): " << rowMark << "," << colMark << endl;
             if (result == 'H')
             {
                 rowOrig = rowMark;
@@ -244,7 +219,6 @@ void AI::HandleResult(char result)
         }
         else if (m_searching)
         {
-            cout << "SEARCHING Handle (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
             if (result == 'M')
             {
                 m_direction++; // Search at the next direction
@@ -263,7 +237,6 @@ void AI::HandleResult(char result)
         }
         else if (m_firstDirection)
         {
-            cout << "FIRST DIRECTION Handle (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
             if (result == 'M')
             {
                 m_firstDirection = false;
@@ -283,7 +256,6 @@ void AI::HandleResult(char result)
         }
         else // Second Direction
         {
-            cout << "SECOND DIRECTION Handle (row,col,dir): " << rowMark << "," << colMark << "," << m_direction << endl;
             if (result == 'M')
             {
                 m_randomShoot = true;

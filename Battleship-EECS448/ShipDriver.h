@@ -79,5 +79,13 @@ class ShipDriver
 		@return: None
 		*/
 		void ClearScreen();
+
+        /*
+        @pre: None
+        @post: Finds correct OS and clears screen based off OS
+        @param: None
+        @return: None
+        */
+       void Clear();
 };
 #endif

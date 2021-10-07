@@ -31,7 +31,7 @@ void ShipDriver::SetUpBoard()
 		cout << "Enter choice: ";
 		cin >> gameType;
 	} while (gameType != '1' && gameType != '2');
-	system("CLS");
+	Clear();
 
 	// if user chooses to play AI
 	if (gameType == '2') // Get and set AI difficulty as well as change m_ifAI to true
@@ -39,13 +39,12 @@ void ShipDriver::SetUpBoard()
 		m_ifAI = true;
 		do 
 		{
-			cout << "Welcome to the AI section of SetUpBoard()!\n";
 			cout << "Choose AI difficulty (E = Easy, M = Medium, H = Hard).\n";
 			cout << "Enter choice: ";
 			cin >> difficulty;
 		} while ((difficulty != 'E' && difficulty != 'M') && difficulty != 'H');
 		m_AI.setDifficulty(difficulty);
-		system("CLS");
+		Clear();
 	}
 
 	// Get the number of ships from the player
@@ -68,7 +67,7 @@ void ShipDriver::SetUpBoard()
 
 void ShipDriver::PopulateBoard(int m_shipNum)
 {
-	system("CLS");
+	Clear();
 	std::cout << endl;
 	char input;
 	string coordinate;
@@ -80,7 +79,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 	{
 		while(counter < m_shipNum && playerTurn == 1)
 		{
-			system("CLS");
+			Clear();
 			display.ShowShips(m_P1);
 			std::cout << "Player 1, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 			std::cin >> input;
@@ -134,7 +133,7 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 		{
 			while(counter < m_shipNum)
 			{
-				system("CLS");
+				Clear();
 				display.ShowShips(m_P2);
 				std::cout << "Player 2, Please enter the orientation for your 1x" << counter + 1 << " ship (h = horizontal, v = vertical): ";
 				std::cin >> input;
@@ -184,20 +183,25 @@ void ShipDriver::PopulateBoard(int m_shipNum)
 		{
 			while(counter < m_shipNum)
 			{
-				system("CLS");
-				display.ShowShips(m_P2);
 				char rotation = m_AI.selectOrientation();
 				std::tuple<int, int> coords = m_AI.placeShip(rotation, counter);
-				std::cout << "Row,Col,Orietation,Counter: " << get<0>(coords) << ", " << get<1>(coords) << ", " << rotation << ", " << counter << std::endl;
 				PlaceShip(get<0>(coords), get<1>(coords), rotation);
 			}
 		}
 	}
 	if (playerTurn == 0) // Runs once both players have placed their ships
 	{
-		display.ShowShips(m_P2); // shows player 2's final board state before starting the game
-		std::cout << "Clearing the screen in 5 seconds. Switch players because the game is about to start!\n";
-		ClearScreen();
+        if (!m_ifAI)
+        {
+            display.ShowShips(m_P2); // shows player 2's final board state before starting the game
+            std::cout << "Clearing the screen in 5 seconds. Switch players because the game is about to start!\n";
+            ClearScreen();
+        }
+        else
+        {
+            Clear();
+            cout << "The AI has placed its ships!\n";
+        }
 		playerTurn = 1;
 		StartGame();
 	}
@@ -235,7 +239,6 @@ std::tuple<int, int> ShipDriver::ConvertCoordinate(string coordinate)
 		std::cout << "Invalid coordinate!\n";
 		return make_tuple(-1, 0);
 	}
-
 }
 
 void ShipDriver::PlaceShip(int row, int col, char rotation)
@@ -298,11 +301,12 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				counter++;
 				if (counter == m_shipNum) // turns over control to player 2 after player 1 has placed all their ships
 				{
-					system("CLS");
+					Clear();
 					playerTurn = -1;
 					counter = 0; // initializes counter back to zero for Player 2
 					display.ShowShips(m_P1);
-					std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
+                    if (m_ifAI) cout << "Clearing the screen in 5 seconds. AI will place ships and game will begin...\n";
+					else std::cout << "Clearing the screen in 5 seconds. Switch players now...\n";
 					ClearScreen();
 				}
 			}
@@ -368,7 +372,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 				counter++;
 				if (counter == m_shipNum)
 				{
-					system("CLS");
+					Clear();
 					playerTurn = 0; // sets playerTurn to 0 to transition to StartGame();
 				}
 			}
@@ -458,7 +462,7 @@ void ShipDriver::StartGame()
 		}
 
 		// DISPLAY BOARDS
-		system("CLS"); // Clear Screen
+		Clear(); // Clear Screen
 		if (playerTurn == 1) // Show boards
 		{
 			cout << "Your board\n";
@@ -492,7 +496,7 @@ void ShipDriver::StartGame()
 
 		// CHECK WIN AND SWITCH TURNS
 		system("pause"); // Pause screen
-		system("CLS"); // Clear Screen
+		Clear(); // Clear Screen
 		if (playerTurn == 1) // Check if the current player has won
 		{
 			win = m_P2.CheckWin(); // Check if P2's board has any S's left
@@ -518,11 +522,22 @@ void ShipDriver::StartGame()
 	}
 
 	system("pause");
-	system("cls");
+	Clear();
 }
 
 void ShipDriver::ClearScreen()
 {
 	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-	system("CLS");
+	Clear();
+}
+
+void ShipDriver::Clear()
+{
+    #if __APPLE__
+        system("clear");
+    #elif _WIN32
+        system("cls");
+    #else
+        system("cls"):
+    #endif
 }
