@@ -22,7 +22,7 @@ void DisplayBoard::ShowShips(ShipBoard& ship)
 			}
 			else
 			{
-				cout << '0' << " ";
+				cout << '~' << " ";
 			}
 		}
 
@@ -50,7 +50,7 @@ void DisplayBoard::ShowHitsMisses(ShipBoard& ship)
 			}
 			else
 			{
-				cout << '0' << " ";
+				cout << '~' << " ";
 			}
 		}
 
