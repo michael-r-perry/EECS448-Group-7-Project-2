@@ -19,6 +19,7 @@ class AI
         std::tuple<int, int> hardShoot();
         std::tuple<int, int> hardShootHelper();
         void flipDirection();
+        bool isValidCoords(int row, int col);
         char m_difficulty;
         bool m_randomShoot;
         bool m_searching;

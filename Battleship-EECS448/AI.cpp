@@ -100,21 +100,74 @@ std::tuple<int, int> AI::mediumShoot()
 {
     std::tuple<int, int> coords = make_tuple(0,0);
 
-    if (m_randomShoot)
+    if (m_randomShoot) // Randomly Shooting Phase
     {
         rowMark = rand() % 9;
         colMark = rand() % 10;
         coords = make_tuple(rowMark, colMark);
     }
-    else 
+    else if (m_searching) // Searching for Ship Direction Phase
     {
-        if (m_searching) 
+        rowMark = rowOrig + get<0>(m_directions[m_direction]);
+        colMark = rowOrig + get<1>(m_directions[m_direction]);
+        if (isValidCoords(rowMark, colMark))
         {
-            
+            coords = make_tuple(rowMark, colMark);
         }
         else
         {
-
+            m_direction++; // On edge, try next direction
+            if (m_direction >= 4) // if through all directions return to random shooting
+            {
+                m_randomShoot = true;
+                m_searching = false;
+                m_direction = 0;
+            }
+            coords = mediumShoot(); // try next direction or return to random
+        }
+    }
+    else if (m_firstDirection) // Shooting in the First Direction Phase after hit in Searching Phase
+    {
+        int row = rowMark + get<0>(m_directions[m_direction]);
+        int col = colMark + get<1>(m_directions[m_direction]);
+        if (isValidCoords(row, col))
+        {
+            rowMark = row;
+            colMark = col;
+            coords = make_tuple(rowMark, colMark);
+        }
+        else
+        {
+            m_firstDirection = false; // end of board in this direction
+            if (m_direction >= 2) // if down or left, up or right was already checked in search phase
+            {                     // Ship complete, return to random shooting
+                m_randomShoot = true;
+                m_direction = 0;
+            }
+            else // Start shooting in opposite direction
+            {
+                flipDirection();
+                rowMark = rowOrig;
+                colMark = colOrig;
+            }
+            coords = mediumShoot(); // try Second Direction or return to Random
+        }
+    }
+    else // Shooting in the Second Direction Phase after miss in First Direction Phase
+    {
+        int row = rowMark + get<0>(m_directions[m_direction]);
+        int col = colMark + get<1>(m_directions[m_direction]);
+        if (isValidCoords(row, col))
+        {
+            rowMark = row;
+            colMark = col;
+            coords = make_tuple(rowMark, colMark);
+        }
+        else
+        {
+            m_randomShoot = true;
+            m_direction = 0;
+            coords = mediumShoot();
         }
     }
     return coords; // Placeholder
@@ -230,4 +283,9 @@ void AI::flipDirection()
     else if (m_direction == 1) m_direction = 3;
     else if (m_direction == 2) m_direction = 0;
     else if (m_direction == 3) m_direction = 1; 
+}
+
+bool AI::isValidCoords(int row, int col)
+{
+    return ((row >= 0 && row <= 8) && (col >= 0 && col <= 9));
 }

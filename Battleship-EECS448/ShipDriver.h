@@ -19,7 +19,6 @@ class ShipDriver
 		int m_shipNum; // Number of ships chosen
 		int playerTurn; // Stores the current turn. Value initialized to 1 for Player One, -1 for Player Two. Multiply by -1 to change turns. 
 		int counter; // Counter used to ensure all ships have been placed
-		bool isValidShot(int row, int col);
 
 	public:
 
