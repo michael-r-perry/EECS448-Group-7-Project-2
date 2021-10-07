@@ -388,6 +388,10 @@ char ShipDriver::PlaceHitOrMiss(ShipBoard& board, int row, int col)
 		board.SetTile(row, col, 'H'); // Set tile to hit
 		return('H');
 	}
+    else if (board.GetTile(row, col) == 'H')
+    {
+        return('M');
+    }
 	else
 	{
 		board.SetTile(row, col, 'M'); // Set tile to miss
