@@ -41,3 +41,4 @@ Michael: 1 hour Formating AI class and comments for mediumShoot();
 10/6:
 Michael: 2 hours Added AI setup phase Implementation
 Michael: 1 hour implemented AI shot to ShipDriver
+Michael: 6 hours mediumShoot, AI implementation, cout formatting
