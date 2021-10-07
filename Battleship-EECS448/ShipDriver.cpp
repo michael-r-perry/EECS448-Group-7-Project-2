@@ -378,7 +378,7 @@ void ShipDriver::PlaceShip(int row, int col, char rotation)
 			}
 			else
 			{
-				std::cout << "\nIllegal placement of ship\n";
+                if (!m_ifAI) std::cout << "\nIllegal placement of ship\n";
 				return;
 			}
 		}
@@ -423,10 +423,13 @@ void ShipDriver::StartGame()
 		}
 		else
 		{
-			cout << "Your board\n";
-			display.ShowShips(m_P2);
-			cout << "\nPlayer 1's board\n";
-			display.ShowHitsMisses(m_P1);
+            if (!m_ifAI)
+            {
+                cout << "Your board\n";
+                display.ShowShips(m_P2);
+                cout << "\nPlayer 1's board\n";
+                display.ShowHitsMisses(m_P1);
+            }
 		}
 
 		// GET SHOT COORDINATES
@@ -472,21 +475,26 @@ void ShipDriver::StartGame()
 		}
 		else
 		{
-			cout << "Your board\n";
-			display.ShowShips(m_P2);
-			cout << "\nPlayer 1's board\n";
-			display.ShowHitsMisses(m_P1);
+            if (!m_ifAI)
+            {
+                cout << "Your board\n";
+                display.ShowShips(m_P2);
+            }
+            cout << "\nPlayer 1's board\n";
+            display.ShowHitsMisses(m_P1);
 		}
 
 		// SHOW USER RESULT
 		if (result == 'H') // Tell player whether they got a hit or miss
 		{
-			cout << "Hit! \n";
+            if (playerTurn == -1 && m_ifAI) cout << "The AI hit a ship!\n";
+			else cout << "Hit! \n";
 			//PlaySound("hit-explosion.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 		else if (result == 'M')
 		{
-			cout << "Miss! \n";
+			if (playerTurn == -1 && m_ifAI) cout << "The AI missed!\n";
+			else cout << "Miss! \n";
 			//PlaySound("miss-splash.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
         if (playerTurn == -1 && m_ifAI) // Handle result if AI is on and P2 turn
@@ -496,7 +504,7 @@ void ShipDriver::StartGame()
 
 		// CHECK WIN AND SWITCH TURNS
 		system("pause"); // Pause screen
-		Clear(); // Clear Screen
+		ClearScreen(); // Clear Screen
 		if (playerTurn == 1) // Check if the current player has won
 		{
 			win = m_P2.CheckWin(); // Check if P2's board has any S's left
@@ -521,8 +529,8 @@ void ShipDriver::StartGame()
 		cout << "Player 2 wins! \n";
 	}
 
-	system("pause");
-	Clear();
+	//system("pause");
+	//Clear();
 }
 
 void ShipDriver::ClearScreen()
