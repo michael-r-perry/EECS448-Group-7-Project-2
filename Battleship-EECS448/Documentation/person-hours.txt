@@ -31,6 +31,9 @@ Davis: 30 minutes in meeting
 Michael: 30 minutes in meeting
 Musau: 30 minutes in meeting
 
+10/3:
+Davis: 1 hour of work on hardShoot function.
+
 10/4:
 Michael: 2 hours finding place ship bug
 
