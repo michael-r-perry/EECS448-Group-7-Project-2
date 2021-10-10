@@ -42,9 +42,9 @@ class AI
         std::tuple<int, int> Shoot();
 
         /*
-	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
+	    @pre: A shot has been fired by shootMedium
+	    @post: Checks to see if the medium AI just hit a ship and needs to change behavior
+	    @param: A char corresponding to the result of a shot
 	    @return: None
 	    */
         void HandleResult(char result);
@@ -52,51 +52,52 @@ class AI
     private:
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
-	    @return: None
+	    @post: Randomly generates coordinates for a shot and returns the values
+	    @param: None
+	    @return: A tuple containing coordinates
 	    */
         std::tuple<int, int> easyShoot();
 
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
-	    @return: None
+	    @post: Returns random coordinates until a ship is hit, then cycles through adjacent options
+	    @param: None
+	    @return: A tuple containing coordinates
 	    */
         std::tuple<int, int> mediumShoot();
 
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
-	    @return: None
+	    @post: Returns the results for hardShootHelper
+	    @param: None
+	    @return: A tuple containing coordinates
 	    */
         std::tuple<int, int> hardShoot();
 
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
-	    @return: None
+	    @post: Searches for the location of a ship, working left-to-right, top-to-bottom and returns the coordinates
+	    @param: None
+	    @return: A tuple containing coordinates
 	    */
         std::tuple<int, int> hardShootHelper();
 
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
+	    @post: flips the direction of the next coordinate to search in mediumShoot
+	    @param: None
 	    @return: None
 	    */
         void flipDirection();
 
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: A ShipBoard class object
-	    @return: None
+	    @post: Checks to see if the given values are in the coordinates
+	    @param: Two ints, one for the row and another for the column
+	    @return: A char that tells if the coordinates are valid
 	    */
         bool isValidCoords(int row, int col);
+
         ShipBoard map;
         char m_difficulty;
         bool m_randomShoot;

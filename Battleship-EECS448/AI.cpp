@@ -168,14 +168,14 @@ std::tuple<int, int> AI::hardShoot()
 {
     rowMark = 0;
     colMark = 0;
-    std::tuple<int, int> coords = make_tuple(rowMark, colMark);
+    std::tuple<int, int> coords;
     coords = hardShootHelper();
     return coords;
 }
 
 std::tuple<int, int> AI::hardShootHelper()
 { 
-    if(map.getTile() == 'S'){
+    if(map.getTile((rowMark, colMark)) == 'S'){
 
         std::tuple<int, int> coords = make_tuple(rowMark, colMark);
         return(coords);
@@ -185,7 +185,7 @@ std::tuple<int, int> AI::hardShootHelper()
         if(colMark == 8){
 
             rowMark++;
-            colMark = 1;
+            colMark = 0;
         }
         else{
 
