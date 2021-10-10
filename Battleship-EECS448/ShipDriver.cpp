@@ -43,7 +43,7 @@ void ShipDriver::SetUpBoard()
 			cout << "Enter choice: ";
 			cin >> difficulty;
 		} while ((difficulty != 'E' && difficulty != 'M') && difficulty != 'H');
-		m_AI.setDifficulty(difficulty);
+		m_AI.setDifficulty(difficulty, m_P1);
 		Clear();
 	}
 
@@ -654,6 +654,6 @@ void ShipDriver::Clear()
     #elif _WIN32
         system("cls");
     #else
-        system("cls"):
+        system("cls");
     #endif
 }

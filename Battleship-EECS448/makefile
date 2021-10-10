@@ -10,7 +10,7 @@ ShipDriver.o: ShipDriver.h ShipDriver.cpp ShipBoard.h DisplayBoard.h AI.h
 ShipBoard.o: ShipBoard.h ShipBoard.cpp
 	g++ -g -std=c++11 -Wall -c ShipBoard.cpp
 
-AI.o: AI.h AI.cpp
+AI.o: AI.h AI.cpp ShipBoard.h
 	g++ -g -std=c++11 -Wall -c AI.cpp
 
 DisplayBoard.o: DisplayBoard.h DisplayBoard.cpp ShipBoard.h

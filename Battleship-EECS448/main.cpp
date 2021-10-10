@@ -11,7 +11,7 @@ void Clear()
     #elif _WIN32
         system("cls");
     #else
-        system("cls"):
+        system("cls");
     #endif
 }
 

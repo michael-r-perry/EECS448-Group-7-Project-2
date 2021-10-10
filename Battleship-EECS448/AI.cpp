@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <tuple>
+#include "ShipBoard.h"
 using namespace std;
 
 AI::AI()
@@ -17,8 +18,9 @@ AI::AI()
     m_directions[3] = make_tuple(0,-1); // Left
 }
 
-void AI::setDifficulty(char difficulty)
+void AI::setDifficulty(char difficulty, ShipBoard& board)
 {
+    map = board;
     if ((difficulty == 'E' || difficulty == 'M') || difficulty == 'H')
     {
         m_difficulty = difficulty;
@@ -164,40 +166,34 @@ std::tuple<int, int> AI::mediumShoot()
 
 std::tuple<int, int> AI::hardShoot()
 {
-    return make_tuple(0,0); // Placeholder
-    /*
-    rowMark = 1;
-    colMark = 1;
-    coordinates = hardShootHelper();
-    (value at coordinates) = 'H';
-    */
+    rowMark = 0;
+    colMark = 0;
+    std::tuple<int, int> coords = make_tuple(rowMark, colMark);
+    coords = hardShootHelper();
+    return coords;
 }
 
 std::tuple<int, int> AI::hardShootHelper()
-{
-    return make_tuple(0,0); // Placeholder
-    /*
-    std::tuple<int, int> coordinates; 
-    
-    if(value at coordinate == 'S'){
+{ 
+    if(map.getTile() == 'S'){
 
-        return(coordinates<rowMark, colMark>);
+        std::tuple<int, int> coords = make_tuple(rowMark, colMark);
+        return(coords);
     }
     else {
 
-        if(rowMark == 9){
+        if(colMark == 8){
 
-        colMark++;
-        rowMark = 1;
+            rowMark++;
+            colMark = 1;
         }
         else{
 
-        rowMark++;
+            colMark++;
         }
         hardShootHelper();
     }
     //recursively work through board and return a pair for the first unhit ship found
-    */
 }
 
 void AI::HandleResult(char result) 

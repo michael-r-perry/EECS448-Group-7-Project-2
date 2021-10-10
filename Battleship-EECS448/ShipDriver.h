@@ -34,7 +34,7 @@ class ShipDriver
 
 		/*
 		@pre: None
-		@post: Runs the main loop of the game
+		@post: Runs the main loop of the game, also checking for super shot input
 		@param: None
 		@return: None
 		*/
