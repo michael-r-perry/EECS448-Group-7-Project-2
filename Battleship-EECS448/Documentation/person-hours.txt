@@ -49,3 +49,10 @@ Michael: 6 hours mediumShoot, AI implementation, cout formatting
 
 10/7:
 Michael: 0.5 hours printline formatting
+Curtis: 1 hour researching sound implementation.
+
+10/8:
+Curtis: 2 hours researching sound implementation and testing.
+
+10/9:
+Curtis: 3 hours implementing the one-time 3x3 super shot.
