@@ -410,6 +410,9 @@ void ShipDriver::StartGame()
 	int adjCol = 0;
 	char result;
 	bool win = false;
+	bool player1Shot = false;
+	bool player2Shot = false;
+	string supershot;
 
 	do
 	{
@@ -454,14 +457,67 @@ void ShipDriver::StartGame()
             adjCol = get<1>(ConvertCoordinate(coordinate));
         }
 
+		//CHECK FOR SUPER-SHOT
+		if (playerTurn == 1 && !player1Shot)
+		{
+			do
+			{
+				std::cout << "Do you want to user your one-time super shot? (3x3)\n";
+				std::cout << "(Y/N): ";
+				std::cin >> supershot; // Player enters if they want a supershot or not.
+			} while (supershot != "Y" && supershot != "N");
+		}
+		if (playerTurn == -1 && !player2Shot)
+		{
+			do
+			{
+				std::cout << "Do you want to user your one-time super shot? (3x3)\n";
+				std::cout << "(Y/N): ";
+				std::cin >> supershot; // Player enters if they want a supershot or not.
+			} while (supershot != "Y" && supershot != "N");
+		}
+
+
 		// PLACE SHOT
 		if (playerTurn == 1) // Place hit/miss marker on other player's board and get result
 		{
-			result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
+			if (!player1Shot)
+			{
+				result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
+				PlaceHitOrMiss(m_P2, adjRow+1, adjCol-1);
+				PlaceHitOrMiss(m_P2, adjRow+1, adjCol);
+				PlaceHitOrMiss(m_P2, adjRow+1, adjCol+1);
+				PlaceHitOrMiss(m_P2, adjRow, adjCol-1);
+				PlaceHitOrMiss(m_P2, adjRow, adjCol+1);
+				PlaceHitOrMiss(m_P2, adjRow-1, adjCol-1);
+				PlaceHitOrMiss(m_P2, adjRow-1, adjCol);
+				PlaceHitOrMiss(m_P2, adjRow-1, adjCol+1);
+				player1Shot = true;
+			}
+			else
+			{
+				result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
+			}
 		}
 		else
 		{
-			result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
+			if (!player2Shot)
+			{
+				result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
+				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol - 1);
+				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol);
+				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol + 1);
+				PlaceHitOrMiss(m_P1, adjRow, adjCol - 1);
+				PlaceHitOrMiss(m_P1, adjRow, adjCol + 1);
+				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol - 1);
+				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol);
+				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol + 1);
+				player2Shot = true;
+			}
+			else
+			{
+				result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
+			}
 		}
 
 		// DISPLAY BOARDS
