@@ -514,6 +514,7 @@ void ShipDriver::StartGame()
 				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol);
 				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol + 1);
 				player2Shot = true;
+				supershot = "N";
 			}
 			else
 			{
