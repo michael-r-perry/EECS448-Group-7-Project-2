@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EECS 448 Project 1: Battleship EECS 448/DisplayBoard.h Source File</title>
+<title>Battleship Group 7: DisplayBoard.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EECS 448 Project 1
+   <div id="projectname">Battleship Group 7
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,19 +61,14 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bef2b472fdd9ba4530e2af2c4674c62e.html">Battleship EECS 448</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">DisplayBoard.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_display_board_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef DISPLAYBOARD_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_display_board_8h.html#ae83359008c807fc72c384f6638c2f0bd">    3</a></span><span class="preprocessor">#define DISPLAYBOARD_H</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_ship_board_8h.html">ShipBoard.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define DISPLAYBOARD_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;ShipBoard.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_display_board.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="class_display_board.html">DisplayBoard</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">public</span>:</div>
@@ -82,7 +78,7 @@ $(function() {
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">    @param: A ShipBoard class object</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">    @return: None</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">    */</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_display_board.html#acafb495d731142f1e22e1480787d1410">ShowShips</a>(<a class="code hl_class" href="class_ship_board.html">ShipBoard</a>&amp; ship);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">void</span> ShowShips(<a class="code hl_class" href="class_ship_board.html">ShipBoard</a>&amp; ship);</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="comment">/*</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">    @pre: None</span></div>
@@ -90,7 +86,7 @@ $(function() {
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">    @param: A ShipBoard class object</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">    @return: None</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">    */</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_display_board.html#af3a138a2d20d583d5a8b74219f7c5413">ShowHitsMisses</a>(<a class="code hl_class" href="class_ship_board.html">ShipBoard</a>&amp; ship);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> ShowHitsMisses(<a class="code hl_class" href="class_ship_board.html">ShipBoard</a>&amp; ship);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> rows = 9; </div>
@@ -98,10 +94,7 @@ $(function() {
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a_ship_board_8h_html"><div class="ttname"><a href="_ship_board_8h.html">ShipBoard.h</a></div></div>
 <div class="ttc" id="aclass_display_board_html"><div class="ttname"><a href="class_display_board.html">DisplayBoard</a></div><div class="ttdef"><b>Definition:</b> DisplayBoard.h:6</div></div>
-<div class="ttc" id="aclass_display_board_html_acafb495d731142f1e22e1480787d1410"><div class="ttname"><a href="class_display_board.html#acafb495d731142f1e22e1480787d1410">DisplayBoard::ShowShips</a></div><div class="ttdeci">void ShowShips(ShipBoard &amp;ship)</div><div class="ttdef"><b>Definition:</b> DisplayBoard.cpp:6</div></div>
-<div class="ttc" id="aclass_display_board_html_af3a138a2d20d583d5a8b74219f7c5413"><div class="ttname"><a href="class_display_board.html#af3a138a2d20d583d5a8b74219f7c5413">DisplayBoard::ShowHitsMisses</a></div><div class="ttdeci">void ShowHitsMisses(ShipBoard &amp;ship)</div><div class="ttdef"><b>Definition:</b> DisplayBoard.cpp:34</div></div>
 <div class="ttc" id="aclass_ship_board_html"><div class="ttname"><a href="class_ship_board.html">ShipBoard</a></div><div class="ttdef"><b>Definition:</b> ShipBoard.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

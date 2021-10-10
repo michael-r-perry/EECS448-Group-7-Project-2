@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EECS 448 Project 1: Battleship EECS 448/ShipBoard.h File Reference</title>
+<title>Battleship Group 7: AI Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EECS 448 Project 1
+   <div id="projectname">Battleship Group 7
    </div>
   </td>
  </tr>
@@ -60,46 +60,37 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bef2b472fdd9ba4530e2af2c4674c62e.html">Battleship EECS 448</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a>  </div>
-  <div class="headertitle"><div class="title">ShipBoard.h File Reference</div></div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_a_i-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">AI Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><a href="_ship_board_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_board.html">ShipBoard</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:af283723c932bc32c9a3f420bbeca5df2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ship_board_8h.html#af283723c932bc32c9a3f420bbeca5df2">SHIPBOARD_H</a></td></tr>
-<tr class="separator:af283723c932bc32c9a3f420bbeca5df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:acc5cb4ce72ce91d1e3a54643000e4157"><td class="memItemLeft" align="right" valign="top"><a id="acc5cb4ce72ce91d1e3a54643000e4157" name="acc5cb4ce72ce91d1e3a54643000e4157"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setDifficulty</b> (char difficulty, <a class="el" href="class_ship_board.html">ShipBoard</a> &amp;board)</td></tr>
+<tr class="separator:acc5cb4ce72ce91d1e3a54643000e4157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c01a3ee05c2b392accd71b1dc14d876"><td class="memItemLeft" align="right" valign="top"><a id="a1c01a3ee05c2b392accd71b1dc14d876" name="a1c01a3ee05c2b392accd71b1dc14d876"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>selectOrientation</b> ()</td></tr>
+<tr class="separator:a1c01a3ee05c2b392accd71b1dc14d876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add3e4ec2750b6f347a44ea48192eef98"><td class="memItemLeft" align="right" valign="top"><a id="add3e4ec2750b6f347a44ea48192eef98" name="add3e4ec2750b6f347a44ea48192eef98"></a>
+std::tuple&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>placeShip</b> (char orientation, int counter)</td></tr>
+<tr class="separator:add3e4ec2750b6f347a44ea48192eef98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accad37d356e4bdb27d6f19ba992a0e7e"><td class="memItemLeft" align="right" valign="top"><a id="accad37d356e4bdb27d6f19ba992a0e7e" name="accad37d356e4bdb27d6f19ba992a0e7e"></a>
+std::tuple&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Shoot</b> ()</td></tr>
+<tr class="separator:accad37d356e4bdb27d6f19ba992a0e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82701c577974f976c49d6684d832ef2"><td class="memItemLeft" align="right" valign="top"><a id="ad82701c577974f976c49d6684d832ef2" name="ad82701c577974f976c49d6684d832ef2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>HandleResult</b> (char result)</td></tr>
+<tr class="separator:ad82701c577974f976c49d6684d832ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="af283723c932bc32c9a3f420bbeca5df2" name="af283723c932bc32c9a3f420bbeca5df2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af283723c932bc32c9a3f420bbeca5df2">&#9670;&nbsp;</a></span>SHIPBOARD_H</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHIPBOARD_H</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li><a class="el" href="_a_i_8h_source.html">AI.h</a></li>
+<li>AI.cpp</li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

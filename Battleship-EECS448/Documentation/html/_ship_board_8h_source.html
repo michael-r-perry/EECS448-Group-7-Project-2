@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EECS 448 Project 1: Battleship EECS 448/ShipBoard.h Source File</title>
+<title>Battleship Group 7: ShipBoard.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EECS 448 Project 1
+   <div id="projectname">Battleship Group 7
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,16 +61,11 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bef2b472fdd9ba4530e2af2c4674c62e.html">Battleship EECS 448</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">ShipBoard.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_ship_board_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">    This class stores a board containing ship locations as well as where ships have been hit. </span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">    0 = empty space</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">    S = ship</span></div>
@@ -79,7 +75,7 @@ $(function() {
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef SHIPBOARD_H</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="_ship_board_8h.html#af283723c932bc32c9a3f420bbeca5df2">   11</a></span><span class="preprocessor">#define SHIPBOARD_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define SHIPBOARD_H</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_ship_board.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="class_ship_board.html">ShipBoard</a></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
@@ -96,7 +92,7 @@ $(function() {
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">        @post: Empty board is initialized</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">        @return: None</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">        */</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_function" href="class_ship_board.html#a71e4ae1628a2f6055b010d351845c8bc">ShipBoard</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_class" href="class_ship_board.html">ShipBoard</a>();</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="comment">/*</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">        @pre: None</span></div>
@@ -104,7 +100,7 @@ $(function() {
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">        @param: None</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">        @return: True if board satisfies win condition, false if not</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">        */</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="class_ship_board.html#a094d16ed7e02ffed17311523e1c3ae26">CheckWin</a>();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">bool</span> CheckWin();</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">/*</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">        @pre: Row and column are in range, marker is valid</span></div>
@@ -112,7 +108,7 @@ $(function() {
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">        @param: None</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">        @return: None</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">        */</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_ship_board.html#aaaa3b9a62a5c7a549f057dc988a809d4">SetTile</a>(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column, <span class="keywordtype">char</span> marker);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">void</span> SetTile(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column, <span class="keywordtype">char</span> marker);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">/*</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">        @pre: Row and column are in range</span></div>
@@ -120,15 +116,11 @@ $(function() {
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">        @param: None</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">        @return: marker at specified tile</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">        */</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">char</span> <a class="code hl_function" href="class_ship_board.html#a0312708053f98c064a27c0e05d0a5c1c">GetTile</a>(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">char</span> GetTile(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclass_ship_board_html"><div class="ttname"><a href="class_ship_board.html">ShipBoard</a></div><div class="ttdef"><b>Definition:</b> ShipBoard.h:14</div></div>
-<div class="ttc" id="aclass_ship_board_html_a0312708053f98c064a27c0e05d0a5c1c"><div class="ttname"><a href="class_ship_board.html#a0312708053f98c064a27c0e05d0a5c1c">ShipBoard::GetTile</a></div><div class="ttdeci">char GetTile(int row, int column)</div><div class="ttdef"><b>Definition:</b> ShipBoard.cpp:53</div></div>
-<div class="ttc" id="aclass_ship_board_html_a094d16ed7e02ffed17311523e1c3ae26"><div class="ttname"><a href="class_ship_board.html#a094d16ed7e02ffed17311523e1c3ae26">ShipBoard::CheckWin</a></div><div class="ttdeci">bool CheckWin()</div><div class="ttdef"><b>Definition:</b> ShipBoard.cpp:16</div></div>
-<div class="ttc" id="aclass_ship_board_html_a71e4ae1628a2f6055b010d351845c8bc"><div class="ttname"><a href="class_ship_board.html#a71e4ae1628a2f6055b010d351845c8bc">ShipBoard::ShipBoard</a></div><div class="ttdeci">ShipBoard()</div><div class="ttdef"><b>Definition:</b> ShipBoard.cpp:5</div></div>
-<div class="ttc" id="aclass_ship_board_html_aaaa3b9a62a5c7a549f057dc988a809d4"><div class="ttname"><a href="class_ship_board.html#aaaa3b9a62a5c7a549f057dc988a809d4">ShipBoard::SetTile</a></div><div class="ttdeci">void SetTile(int row, int column, char marker)</div><div class="ttdef"><b>Definition:</b> ShipBoard.cpp:34</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
