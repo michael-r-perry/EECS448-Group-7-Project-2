@@ -467,7 +467,7 @@ void ShipDriver::StartGame()
 				std::cin >> supershot; // Player enters if they want a supershot or not.
 			} while (supershot != "Y" && supershot != "N");
 		}
-		if (playerTurn == -1 && !player2Shot)
+		if (playerTurn == -1 && !player2Shot && !m_ifAI)
 		{
 			do
 			{
@@ -481,7 +481,7 @@ void ShipDriver::StartGame()
 		// PLACE SHOT
 		if (playerTurn == 1) // Place hit/miss marker on other player's board and get result
 		{
-			if (!player1Shot)
+			if (supershot == "Y" && !player1Shot)
 			{
 				result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
 				PlaceHitOrMiss(m_P2, adjRow+1, adjCol-1);
@@ -493,6 +493,7 @@ void ShipDriver::StartGame()
 				PlaceHitOrMiss(m_P2, adjRow-1, adjCol);
 				PlaceHitOrMiss(m_P2, adjRow-1, adjCol+1);
 				player1Shot = true;
+				supershot = "N";
 			}
 			else
 			{
@@ -501,7 +502,7 @@ void ShipDriver::StartGame()
 		}
 		else
 		{
-			if (!player2Shot)
+			if (supershot == "Y" && !player2Shot && !m_ifAI)
 			{
 				result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
 				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol - 1);
