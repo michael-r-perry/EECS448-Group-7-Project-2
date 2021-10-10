@@ -481,17 +481,42 @@ void ShipDriver::StartGame()
 		// PLACE SHOT
 		if (playerTurn == 1) // Place hit/miss marker on other player's board and get result
 		{
-			if (supershot == "Y" && !player1Shot)
+			if (!player1Shot && supershot == "Y")
 			{
 				result = PlaceHitOrMiss(m_P2, adjRow, adjCol);
-				PlaceHitOrMiss(m_P2, adjRow+1, adjCol-1);
-				PlaceHitOrMiss(m_P2, adjRow+1, adjCol);
-				PlaceHitOrMiss(m_P2, adjRow+1, adjCol+1);
-				PlaceHitOrMiss(m_P2, adjRow, adjCol-1);
-				PlaceHitOrMiss(m_P2, adjRow, adjCol+1);
-				PlaceHitOrMiss(m_P2, adjRow-1, adjCol-1);
-				PlaceHitOrMiss(m_P2, adjRow-1, adjCol);
-				PlaceHitOrMiss(m_P2, adjRow-1, adjCol+1);
+				if (adjCol != 0)
+				{
+					PlaceHitOrMiss(m_P2, adjRow, adjCol - 1);
+				}
+				if (adjCol != 9)
+				{
+					PlaceHitOrMiss(m_P2, adjRow, adjCol + 1);
+				}
+				if (adjRow != 8)
+				{
+					if (adjCol != 9)
+					{
+						PlaceHitOrMiss(m_P2, adjRow + 1, adjCol + 1);
+					}
+					if (adjCol != 0)
+					{
+						PlaceHitOrMiss(m_P2, adjRow + 1, adjCol - 1);
+					}
+					PlaceHitOrMiss(m_P2, adjRow + 1, adjCol);
+				}
+				if (adjRow != 0)
+				{
+					if (adjCol != 9)
+					{
+						PlaceHitOrMiss(m_P2, adjRow - 1, adjCol + 1);
+					}
+					if (adjCol != 0)
+					{
+						PlaceHitOrMiss(m_P2, adjRow - 1, adjCol - 1);
+					}
+					PlaceHitOrMiss(m_P2, adjRow - 1, adjCol);
+
+				}
 				player1Shot = true;
 				supershot = "N";
 			}
@@ -505,14 +530,39 @@ void ShipDriver::StartGame()
 			if (supershot == "Y" && !player2Shot && !m_ifAI)
 			{
 				result = PlaceHitOrMiss(m_P1, adjRow, adjCol);
-				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol - 1);
-				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol);
-				PlaceHitOrMiss(m_P1, adjRow + 1, adjCol + 1);
-				PlaceHitOrMiss(m_P1, adjRow, adjCol - 1);
-				PlaceHitOrMiss(m_P1, adjRow, adjCol + 1);
-				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol - 1);
-				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol);
-				PlaceHitOrMiss(m_P1, adjRow - 1, adjCol + 1);
+				if (adjCol != 0)
+				{
+					PlaceHitOrMiss(m_P1, adjRow, adjCol - 1);
+				}
+				if (adjCol != 9)
+				{
+					PlaceHitOrMiss(m_P1, adjRow, adjCol + 1);
+				}
+				if (adjRow != 8)
+				{
+					if (adjCol != 9)
+					{
+						PlaceHitOrMiss(m_P1, adjRow + 1, adjCol + 1);
+					}
+					if (adjCol != 0)
+					{
+						PlaceHitOrMiss(m_P1, adjRow + 1, adjCol - 1);
+					}
+					PlaceHitOrMiss(m_P1, adjRow + 1, adjCol);
+				}
+				if (adjRow != 0)
+				{
+					if (adjCol != 9)
+					{
+						PlaceHitOrMiss(m_P1, adjRow - 1, adjCol + 1);
+					}
+					if (adjCol != 0)
+					{
+						PlaceHitOrMiss(m_P1, adjRow - 1, adjCol - 1);
+					}
+					PlaceHitOrMiss(m_P1, adjRow - 1, adjCol);
+
+				}
 				player2Shot = true;
 				supershot = "N";
 			}
