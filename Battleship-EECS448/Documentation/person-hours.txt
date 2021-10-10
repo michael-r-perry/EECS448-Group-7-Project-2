@@ -20,16 +20,16 @@ Project 2:
 Estimated Hours: 40. Our last project took about 50 hours and this project's workload seems a bit lighter.
 
 9/24:
-Curtis: 45 minutes in planning meeting
-Davis: 45 minutes in planning meeting
-Michael: 45 minutes in planning meeting
-Musau: 45 minutes in planning meeting
+Curtis: .75 hours in planning meeting
+Davis: .75 hours in planning meeting
+Michael: .75 hours in planning meeting
+Musau: .75 hours in planning meeting
 
 9/27:
-Curtis: 30 minutes in meeting
-Davis: 30 minutes in meeting
-Michael: 30 minutes in meeting
-Musau: 30 minutes in meeting
+Curtis: .5 hours in meeting
+Davis: .5 hours in meeting
+Michael: .5 hours in meeting
+Musau: .5 hours in meeting
 
 10/3:
 Davis: 1 hour of work on hardShoot function.
@@ -56,3 +56,9 @@ Curtis: 2 hours researching sound implementation and testing.
 
 10/9:
 Curtis: 3 hours implementing the one-time 3x3 super shot.
+
+10/10:
+Curtis: 1 hour helping Davis with bugfixing and building
+Davis: 4 hours on finishing hardShoot and generating HTML documentation
+
+Part 2 Grand Total: 31 person-hours
