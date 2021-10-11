@@ -62,8 +62,9 @@ std::tuple<int, int> AI::placeShip(char orientation, int counter)
     return make_tuple(row, col);
 }
 
-std::tuple<int, int> AI::Shoot()
+std::tuple<int, int> AI::Shoot(ShipBoard& board)
 {
+    map = board;
     if (m_difficulty == 'E')
     {
         return easyShoot();
@@ -175,14 +176,14 @@ std::tuple<int, int> AI::hardShoot()
 
 std::tuple<int, int> AI::hardShootHelper()
 { 
-    if(map.getTile((rowMark, colMark)) == 'S'){
+    if(map.GetTile(rowMark, colMark) == 'S'){
 
         std::tuple<int, int> coords = make_tuple(rowMark, colMark);
-        return(coords);
+        return coords;
     }
     else {
 
-        if(colMark == 8){
+        if(colMark == 9){
 
             rowMark++;
             colMark = 0;
@@ -193,7 +194,8 @@ std::tuple<int, int> AI::hardShootHelper()
         }
         hardShootHelper();
     }
-    //recursively work through board and return a pair for the first unhit ship found
+    std::tuple<int, int> coords = make_tuple(rowMark, colMark);
+    return coords; // Placeholder
 }
 
 void AI::HandleResult(char result) 

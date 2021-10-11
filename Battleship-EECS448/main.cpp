@@ -34,7 +34,7 @@ int main()
 		if (cin.fail()) // If user has a bad input i.e. char 
 		{
 			cin.clear(); // get rid of failure state
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discards bad character
+			//cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); commented out unneeded code. Left it in case it's important.
 
 			Clear();
 			cout << "Invalid choice!\n";

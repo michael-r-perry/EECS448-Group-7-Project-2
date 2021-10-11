@@ -35,11 +35,11 @@ class AI
 
         /*
 	    @pre: None
-	    @post: Displays the specified board with only hits/misses to user
-	    @param: None
+	    @post: updates the map ShipBoard object and chooses which difficulty of AI will shoot
+	    @param: A ShipBoard object for player 1
 	    @return: A tuple containing the coordinates to shoot at, based on the difficulty
 	    */
-        std::tuple<int, int> Shoot();
+        std::tuple<int, int> Shoot(ShipBoard& board);
 
         /*
 	    @pre: A shot has been fired by shootMedium

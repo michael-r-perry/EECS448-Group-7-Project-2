@@ -438,7 +438,7 @@ void ShipDriver::StartGame()
 		// GET SHOT COORDINATES
         if (playerTurn == -1 && m_ifAI) // if its player 2 and AI is on
         {
-            std::tuple<int, int> coord = m_AI.Shoot();
+            std::tuple<int, int> coord = m_AI.Shoot(m_P1);
             adjRow = get<0>(coord);
             adjCol = get<1>(coord);
         }

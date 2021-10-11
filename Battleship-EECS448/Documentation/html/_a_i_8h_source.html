@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Battleship Group 7: AI.h Source File</title>
+<title>Battleship Group 7: C:/Users/Deeke/Desktop/EECS448-Group-7-Project-2/Battleship-EECS448/AI.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">AI.h</div></div>
+  <div class="headertitle"><div class="title">C:/Users/Deeke/Desktop/EECS448-Group-7-Project-2/Battleship-EECS448/AI.h</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef AI_H</span></div>
@@ -102,11 +102,11 @@ $(function() {
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="comment">/*</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">        @pre: None</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">        @post: Displays the specified board with only hits/misses to user</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">        @param: None</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">        @post: updates the map ShipBoard object and chooses which difficulty of AI will shoot</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">        @param: A ShipBoard object for player 1</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">        @return: A tuple containing the coordinates to shoot at, based on the difficulty</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">        */</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::tuple&lt;int, int&gt; Shoot();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::tuple&lt;int, int&gt; Shoot(<a class="code hl_class" href="class_ship_board.html">ShipBoard</a>&amp; board);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">/*</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">        @pre: A shot has been fired by shootMedium</span></div>
