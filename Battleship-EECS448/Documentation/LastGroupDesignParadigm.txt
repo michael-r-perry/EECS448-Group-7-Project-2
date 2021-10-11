@@ -1,0 +1,18 @@
+The last group used object-oriented as their design paradigm. This is fairly obvious from the structure of their code:
+not only is it C++, it has a main file where the program starts that contains very little content. Instead, the majority
+of the code was split up into various classes that handle different jobs.
+
+For instance, there was a class specifically dedicated to displaying the UI of the game (DisplayShipBoard), which is
+itself accessed by ShipBoard to perform operations on it. Some are bigger than others, but there isn't a single class
+that does everything. The closest would be ShipDriver, which is the glue that holds all of the different objects
+together, even after all of our changes.
+
+The biggest use of polymorphism seems to be ShipBoard. There are 3 different objects from the same class: one for player
+one's board, another for player 2, and a third for the AI. Each are referenced by ShipDriver, and if there's AI, the shoot
+function of the AI class references P1's board as well.
+
+It makes sense why the last team would use object oriented. C++ is naturally suited to that kind of work, and having a
+"god-class" is a very clunky and hard-to-fix way of doing things when the alternative works so well.
+
+We had to change a few of the previous group's methods around to suit our purposes, but most of the original structure is
+there.The main changes are in ShipDriver to the PlaceShips method, but there are many smaller ones scattered around.
