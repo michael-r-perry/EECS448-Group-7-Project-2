@@ -1,0 +1,5 @@
+Our Custom Addition: Special Shot!
+
+Every time the user enters a coordinate, they're asked if they want to use their one-time-use special shot.
+This shot simultaneously shoots a 3x3 area and hits all spaces within it, at which point the player no longer
+has the option to use it.
