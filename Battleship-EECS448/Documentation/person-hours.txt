@@ -60,5 +60,6 @@ Curtis: 3 hours implementing the one-time 3x3 super shot.
 10/10:
 Curtis: 1 hour helping Davis with bugfixing and building
 Davis: 4 hours on finishing hardShoot and generating HTML documentation
+Davis: 2 hours finishing hardShoot function and creating miscellaneous documents
 
-Part 2 Grand Total: 31 person-hours
+Part 2 Grand Total: 33 person-hours
